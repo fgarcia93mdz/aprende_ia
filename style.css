@@ -211,6 +211,86 @@ button:hover {
   border-left-color: #2ecc71;
 }
 
+.resultado-final {
+  margin-top: 40px;
+  padding: 30px;
+  background: #fefefe;
+  border: 2px solid #c30000;
+  border-radius: 14px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-in-out;
+}
+
+.insignia {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #c30000;
+}
+
+.estrellas {
+  font-size: 1.8em;
+  color: gold;
+  margin-bottom: 20px;
+}
+
+#historial h2 {
+  text-align: center;
+  margin-top: 40px;
+  color: #c30000;
+}
+
+#historialTabla {
+  max-width: 800px;
+  margin: 20px auto;
+  background: #fff8f8;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+
+#historialTabla table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95em;
+}
+
+#historialTabla th,
+#historialTabla td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+#historialTabla th {
+  background-color: #c30000;
+  color: white;
+}
+
+.formulario-usuario {
+  margin-bottom: 30px;
+  background: #fff8f8;
+  padding: 20px;
+  border: 1px solid #c30000;
+  border-radius: 10px;
+}
+
+.formulario-usuario label {
+  font-weight: 600;
+  display: block;
+  margin-top: 10px;
+}
+
+.formulario-usuario input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #bbb;
+  font-size: 1rem;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
 footer {
   margin: 50px auto 20px;
   text-align: center;
@@ -227,6 +307,22 @@ footer a {
 
 footer a:hover {
   text-decoration: underline;
+}
+
+button:nth-of-type(3) {
+  background-color: #777;
+}
+
+button:nth-of-type(3):hover {
+  background-color: #444;
+}
+
+button.borrar {
+  background-color: #555;
+}
+
+button.borrar:hover {
+  background-color: #000;
 }
 
 @media screen and (max-width: 768px) {

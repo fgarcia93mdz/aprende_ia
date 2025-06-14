@@ -18,6 +18,17 @@
       <p class="eslogan">“Aprender a escribir y saber preguntar”</p>
     </header>
 
+    <div class="formulario-usuario">
+      <label for="nombre">👤 Nombre:</label>
+      <input type="text" id="nombre" placeholder="Ej: Juan">
+    
+      <label for="apellido">👤 Apellido:</label>
+      <input type="text" id="apellido" placeholder="Ej: Pérez">
+    
+      <label for="sector">🏢 Sector:</label>
+      <input type="text" id="sector" placeholder="Ej: Comercial, Técnico, RRHH...">
+    </div>    
+
     <div class="formulario">
       <label for="areaSelect">📂 Elegí un área:</label>
       <select id="areaSelect" onchange="cambiarEscenario()">
@@ -83,6 +94,24 @@
         N°243 vencida hace 10 días.”</p>
       <p><strong>Sugerencia:</strong> ¡Excelente! Ya estás escribiendo como un experto en IA.</p>
     </div>
+  </section>
+
+  <section id="pantallaFinal" class="oculto">
+    <div class="resultado-final">
+      <h2>🏁 ¡Resultado final!</h2>
+      <p id="insigniaFinal" class="insignia"></p>
+      <div id="estrellasFinal" class="estrellas"></div>
+      <button onclick="mostrarHistorial()">📜 Ver historial</button>
+      <button onclick="exportarHistorial()">📄 Exportar historial PDF</button>
+      <button onclick="reiniciar()">🔄 Volver a intentar</button>
+    </div>
+  </section>
+
+  <section id="historial" class="oculto">
+    <h2>🗂️ Historial de prácticas</h2>
+    <div id="historialTabla"></div>
+    <button onclick="ocultarHistorial()">⬅️ Ocultar historial</button>
+    <button class="borrar" onclick="borrarHistorial()">🗑️ Borrar historial</button>
   </section>
 
   <footer>

@@ -96,82 +96,77 @@ const escenarios = {
       texto: "📞 Creá una propuesta breve y atractiva para enviar a un prospecto difícil de contactar.",
       respuestaIA: "Hola, trabajamos con industrias como la tuya ayudando a reducir riesgos y cumplir normativas. Te propongo 15 minutos para contarte cómo."
     }
+  },
+  ventas: {
+    facil: {
+      texto: "🛍️ Querés enviar un mensaje de seguimiento por WhatsApp a un cliente que recibió presupuesto hace 10 días.",
+      respuestaIA: "Hola, ¿cómo estás? Quería saber si tuviste oportunidad de revisar la propuesta que te enviamos. Quedo a disposición."
+    },
+    intermedio: {
+      texto: "🛍️ Redactá una respuesta para un cliente que pidió un descuento por cantidad.",
+      respuestaIA: "Hola, gracias por tu consulta. Podemos ofrecerte un 10% de descuento por compras superiores a 20 unidades. Te paso la cotización ajustada."
+    },
+    dificil: {
+      texto: "🛍️ Escribí un mail para recuperar a un cliente que dejó de comprar hace 6 meses.",
+      respuestaIA: "Hola Juan, notamos que hace un tiempo no realizás compras con nosotros. ¿Hay algo en lo que podamos ayudarte? Te compartimos una promo exclusiva por tu fidelidad."
+    }
+  },
+  atencion: {
+    facil: {
+      texto: "📞 Un cliente pregunta si su matafuego está vencido y cuándo puede renovarlo.",
+      respuestaIA: "Hola, tu equipo vence el 20 de junio. Podemos pasar esta semana para renovarlo. ¿Te parece bien?"
+    },
+    intermedio: {
+      texto: "📞 Respondé a una queja de un cliente por retraso en la visita técnica.",
+      respuestaIA: "Lamentamos el retraso. Tuvimos una reprogramación por fuerza mayor. Reagendamos para mañana a las 10 hs. Gracias por la comprensión."
+    },
+    dificil: {
+      texto: "📞 Respondé con empatía a un cliente que recibió mal el producto y está molesto.",
+      respuestaIA: "Lamentamos sinceramente lo sucedido. Ya gestionamos el reemplazo urgente y mejoraremos los controles. Gracias por tu paciencia."
+    }
+  },
+  tecnica: {
+    facil: {
+      texto: "🔧 Debés armar un paso a paso para detectar una falla eléctrica en una central de incendios.",
+      respuestaIA: "1. Revisar alimentación general. 2. Comprobar baterías. 3. Testear sensores. 4. Reiniciar la central. 5. Registrar la intervención."
+    },
+    intermedio: {
+      texto: "🔧 Redactá un informe corto sobre una prueba hidráulica exitosa.",
+      respuestaIA: "Prueba realizada el 12/6, sin pérdidas ni obstrucciones. Presión mantenida 1 hora a 8 bar. Sistema listo para inspección final."
+    },
+    dificil: {
+      texto: "🔧 Escribí una recomendación técnica para cambiar detectores por obsolescencia.",
+      respuestaIA: "Sugerimos reemplazar detectores serie XP90 por modelo XN100 por vencimiento de vida útil (10 años). Mejora rendimiento y reduce falsas alarmas."
+    }
+  }, cotizaciones: {
+    facil: {
+      texto: "📄 Vas a enviar por mail una cotización formal con detalles técnicos y precios.",
+      respuestaIA: "Estimado cliente, adjuntamos la cotización solicitada con los detalles técnicos y económicos. Quedamos atentos a comentarios."
+    },
+    intermedio: {
+      texto: "📄 Redactá una propuesta comercial para instalación en galpón industrial.",
+      respuestaIA: "Estimado, ofrecemos sistema de detección y extinción para galpón de 500 m², incluye planos, materiales y mano de obra. Ver detalle adjunto."
+    },
+    dificil: {
+      texto: "📄 Escribí un mensaje aclarando una diferencia entre dos versiones de cotización.",
+      respuestaIA: "Hola, la diferencia entre la cotización anterior y la actual se debe a la incorporación de sensores adicionales solicitados. Adjunto ambas versiones para comparar."
+    }
+  },
+  obras: {
+    facil: {
+      texto: "🏗️ Necesitás redactar un informe breve de avance de obra para instalación contra incendios.",
+      respuestaIA: "Al 11/6: cañerías principales instaladas (100%), pruebas hidráulicas iniciadas, rociadores en área B pendientes. Tiempo estimado: 3 días."
+    },
+    intermedio: {
+      texto: "🏗️ Redactá un correo para solicitar planos actualizados al cliente.",
+      respuestaIA: "Estimado, necesitamos los planos actualizados para avanzar con las tareas programadas. Agradeceremos los envíen a la brevedad. Gracias."
+    },
+    dificil: {
+      texto: "🏗️ Escribí una respuesta a una auditoría que detectó una diferencia de ubicación en un hidrante.",
+      respuestaIA: "Gracias por la observación. El hidrante fue reubicado 1 metro por obstrucción estructural. Adjuntamos plano corregido y fotos de la ejecución."
+    }
   }
-};
 
-escenarios.ventas = {
-  facil: {
-    texto: "🛍️ Querés enviar un mensaje de seguimiento por WhatsApp a un cliente que recibió presupuesto hace 10 días.",
-    respuestaIA: "Hola, ¿cómo estás? Quería saber si tuviste oportunidad de revisar la propuesta que te enviamos. Quedo a disposición."
-  },
-  intermedio: {
-    texto: "🛍️ Redactá una respuesta para un cliente que pidió un descuento por cantidad.",
-    respuestaIA: "Hola, gracias por tu consulta. Podemos ofrecerte un 10% de descuento por compras superiores a 20 unidades. Te paso la cotización ajustada."
-  },
-  dificil: {
-    texto: "🛍️ Escribí un mail para recuperar a un cliente que dejó de comprar hace 6 meses.",
-    respuestaIA: "Hola Juan, notamos que hace un tiempo no realizás compras con nosotros. ¿Hay algo en lo que podamos ayudarte? Te compartimos una promo exclusiva por tu fidelidad."
-  }
-};
-
-escenarios.atencion = {
-  facil: {
-    texto: "📞 Un cliente pregunta si su matafuego está vencido y cuándo puede renovarlo.",
-    respuestaIA: "Hola, tu equipo vence el 20 de junio. Podemos pasar esta semana para renovarlo. ¿Te parece bien?"
-  },
-  intermedio: {
-    texto: "📞 Respondé a una queja de un cliente por retraso en la visita técnica.",
-    respuestaIA: "Lamentamos el retraso. Tuvimos una reprogramación por fuerza mayor. Reagendamos para mañana a las 10 hs. Gracias por la comprensión."
-  },
-  dificil: {
-    texto: "📞 Respondé con empatía a un cliente que recibió mal el producto y está molesto.",
-    respuestaIA: "Lamentamos sinceramente lo sucedido. Ya gestionamos el reemplazo urgente y mejoraremos los controles. Gracias por tu paciencia."
-  }
-};
-
-escenarios.tecnica = {
-  facil: {
-    texto: "🔧 Debés armar un paso a paso para detectar una falla eléctrica en una central de incendios.",
-    respuestaIA: "1. Revisar alimentación general. 2. Comprobar baterías. 3. Testear sensores. 4. Reiniciar la central. 5. Registrar la intervención."
-  },
-  intermedio: {
-    texto: "🔧 Redactá un informe corto sobre una prueba hidráulica exitosa.",
-    respuestaIA: "Prueba realizada el 12/6, sin pérdidas ni obstrucciones. Presión mantenida 1 hora a 8 bar. Sistema listo para inspección final."
-  },
-  dificil: {
-    texto: "🔧 Escribí una recomendación técnica para cambiar detectores por obsolescencia.",
-    respuestaIA: "Sugerimos reemplazar detectores serie XP90 por modelo XN100 por vencimiento de vida útil (10 años). Mejora rendimiento y reduce falsas alarmas."
-  }
-};
-
-escenarios.cotizaciones = {
-  facil: {
-    texto: "📄 Vas a enviar por mail una cotización formal con detalles técnicos y precios.",
-    respuestaIA: "Estimado cliente, adjuntamos la cotización solicitada con los detalles técnicos y económicos. Quedamos atentos a comentarios."
-  },
-  intermedio: {
-    texto: "📄 Redactá una propuesta comercial para instalación en galpón industrial.",
-    respuestaIA: "Estimado, ofrecemos sistema de detección y extinción para galpón de 500 m², incluye planos, materiales y mano de obra. Ver detalle adjunto."
-  },
-  dificil: {
-    texto: "📄 Escribí un mensaje aclarando una diferencia entre dos versiones de cotización.",
-    respuestaIA: "Hola, la diferencia entre la cotización anterior y la actual se debe a la incorporación de sensores adicionales solicitados. Adjunto ambas versiones para comparar."
-  }
-};
-
-escenarios.obras = {
-  facil: {
-    texto: "🏗️ Necesitás redactar un informe breve de avance de obra para instalación contra incendios.",
-    respuestaIA: "Al 11/6: cañerías principales instaladas (100%), pruebas hidráulicas iniciadas, rociadores en área B pendientes. Tiempo estimado: 3 días."
-  },
-  intermedio: {
-    texto: "🏗️ Redactá un correo para solicitar planos actualizados al cliente.",
-    respuestaIA: "Estimado, necesitamos los planos actualizados para avanzar con las tareas programadas. Agradeceremos los envíen a la brevedad. Gracias."
-  },
-  dificil: {
-    texto: "🏗️ Escribí una respuesta a una auditoría que detectó una diferencia de ubicación en un hidrante.",
-    respuestaIA: "Gracias por la observación. El hidrante fue reubicado 1 metro por obstrucción estructural. Adjuntamos plano corregido y fotos de la ejecución."
-  }
 };
 
 function cambiarEscenario() {
@@ -252,7 +247,11 @@ function procesarPrompt() {
   respuesta.classList.add("respuesta", "highlight");
 
   setTimeout(() => respuesta.classList.remove("highlight"), 600);
+
+  guardarEnHistorial(area, nivel, prompt, claseNivel);
+  mostrarPantallaFinal(claseNivel);
 }
+
 
 function reiniciar() {
   document.getElementById("promptInput").value = "";
@@ -305,4 +304,140 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (areaGuardada && nivelGuardado) cambiarEscenario();
 });
+
+function mostrarPantallaFinal(nivelDetectado) {
+  const pantalla = document.getElementById("pantallaFinal");
+  const insignia = document.getElementById("insigniaFinal");
+  const estrellas = document.getElementById("estrellasFinal");
+
+  let textoInsignia = "🎓 Participante";
+  let estrellasHTML = "⭐";
+
+  if (nivelDetectado === "nivel-medio") {
+    textoInsignia = "🧠 Intermedio IA";
+    estrellasHTML = "⭐⭐";
+  } else if (nivelDetectado === "nivel-alto") {
+    textoInsignia = "🥇 Experto en Prompts";
+    estrellasHTML = "⭐⭐⭐";
+  } else {
+    textoInsignia = "🧩 Aprendiz Nivel 1";
+    estrellasHTML = "⭐";
+  }
+
+  insignia.innerText = textoInsignia;
+  estrellas.innerText = estrellasHTML;
+  pantalla.classList.remove("oculto");
+}
+
+function guardarEnHistorial(area, nivel, prompt, nivelDetectado) {
+  const historial = JSON.parse(localStorage.getItem("historialIA")) || [];
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const apellido = document.getElementById("apellido").value.trim();
+  const sector = document.getElementById("sector").value.trim();
+
+  historial.push({
+    fecha: new Date().toLocaleString(),
+    nombre,
+    apellido,
+    sector,
+    area,
+    nivel,
+    prompt,
+    evaluacion: nivelDetectado
+  });
+
+  localStorage.setItem("historialIA", JSON.stringify(historial));
+}
+
+
+function mostrarHistorial() {
+  const tablaContenedor = document.getElementById("historialTabla");
+  const historial = JSON.parse(localStorage.getItem("historialIA")) || [];
+
+  if (historial.length === 0) {
+    tablaContenedor.innerHTML = "<p>No hay intentos guardados.</p>";
+  } else {
+    let tabla = `<table><thead><tr>
+      <th>Fecha</th><th>Nombre</th><th>Apellido</th><th>Sector</th>
+      <th>Área</th><th>Nivel</th><th>Prompt</th><th>Evaluación</th>
+    </tr></thead><tbody>`;
+
+    historial.forEach(item => {
+      tabla += `<tr>
+        <td>${item.fecha}</td>
+        <td>${item.nombre}</td>
+        <td>${item.apellido}</td>
+        <td>${item.sector}</td>
+        <td>${item.area}</td>
+        <td>${item.nivel}</td>
+        <td>${item.prompt}</td>
+        <td>${item.evaluacion.replace("nivel-", "").toUpperCase()}</td>
+      </tr>`;
+    });
+
+    tabla += "</tbody></table>";
+    tablaContenedor.innerHTML = tabla;
+  }
+
+  document.getElementById("historial").classList.remove("oculto");
+}
+
+
+function ocultarHistorial() {
+  document.getElementById("historial").classList.add("oculto");
+}
+
+function exportarHistorial() {
+  const historial = JSON.parse(localStorage.getItem("historialIA")) || [];
+  const nombre = document.getElementById("nombre").value || "(Sin nombre)";
+  const apellido = document.getElementById("apellido").value || "";
+  const sector = document.getElementById("sector").value || "(Sin sector)";
+
+  if (historial.length === 0) {
+    alert("No hay intentos guardados.");
+    return;
+  }
+
+  let html = `<h2>Historial de práctica - Simulador IA</h2>`;
+  html += `<p><strong>Participante:</strong> ${nombre} ${apellido}<br>
+           <strong>Sector:</strong> ${sector}</p>`;
+
+  html += `<table border="1" style="border-collapse: collapse; width: 100%; font-size: 12px;">
+    <thead><tr><th>Fecha</th><th>Área</th><th>Nivel</th><th>Prompt</th><th>Evaluación</th></tr></thead><tbody>`;
+  historial.forEach(item => {
+    html += `<tr>
+      <td>${item.fecha}</td>
+      <td>${item.area}</td>
+      <td>${item.nivel}</td>
+      <td>${item.prompt}</td>
+      <td>${item.evaluacion.replace("nivel-", "").toUpperCase()}</td>
+    </tr>`;
+  });
+  html += "</tbody></table>";
+
+  const element = document.createElement("div");
+  element.innerHTML = html;
+  html2pdf().from(element).save(`historial-${nombre}-${apellido}.pdf`);
+}
+
+function borrarHistorial() {
+  const confirmar = confirm("¿Estás seguro de que querés borrar todo el historial y reiniciar los campos?");
+  if (!confirmar) return;
+
+  localStorage.removeItem("historialIA");
+
+  document.getElementById("historialTabla").innerHTML = "<p>Historial borrado exitosamente.</p>";
+
+  document.getElementById("nombre").value = "";
+  document.getElementById("apellido").value = "";
+  document.getElementById("sector").value = "";
+  document.getElementById("areaSelect").selectedIndex = 0;
+  document.getElementById("nivelSelect").selectedIndex = 0;
+  document.getElementById("promptInput").value = "";
+
+  document.getElementById("analisis").classList.add("oculto");
+  document.getElementById("respuesta").classList.add("oculto");
+  document.getElementById("escenario").classList.add("oculto");
+}
 
