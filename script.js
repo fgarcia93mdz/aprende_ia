@@ -40,14 +40,18 @@ const escenarios = {
 function cambiarEscenario() {
   const area = document.getElementById("areaSelect").value;
   const escenario = document.getElementById("escenario");
-  escenario.classList.add("oculto");
+  const promptInput = document.getElementById("promptInput");
   document.getElementById("analisis").classList.add("oculto");
   document.getElementById("respuesta").classList.add("oculto");
-  document.getElementById("promptInput").value = "";
+  promptInput.value = "";
 
   if (escenarios[area]) {
     escenario.innerText = escenarios[area].texto;
     escenario.classList.remove("oculto");
+    escenario.classList.add("highlight");
+    setTimeout(() => escenario.classList.remove("highlight"), 600);
+  } else {
+    escenario.classList.add("oculto");
   }
 }
 
@@ -58,33 +62,60 @@ function procesarPrompt() {
   const respuesta = document.getElementById("respuesta");
 
   if (!area || !prompt) {
-    alert("Seleccioná un área y escribí tu prompt.");
+    alert("Por favor, seleccioná un área y escribí tu prompt.");
     return;
   }
 
   let nivel = "🔴 Bajo";
-  let sugerencia = "Tu prompt es muy vago. Agregá contexto, objetivo y tono.";
+  let claseNivel = "nivel-bajo";
+  let sugerencia = "Tu prompt es muy general. Agregá contexto, objetivo y tono (ej: formal, urgente, cordial).";
+  let explicacion = "El prompt no contiene información clara sobre lo que querés que haga la IA.";
+
   if (prompt.length > 30) {
-    if (prompt.includes("redacta") || prompt.includes("correo") || prompt.includes("mensaje")) {
+    if (prompt.includes("redacta") || prompt.includes("correo") || prompt.includes("mensaje") || prompt.includes("respuesta")) {
       nivel = "🟡 Medio";
-      sugerencia = "Vas bien. Agregá detalles: tipo de cliente, tiempo, estilo.";
+      claseNivel = "nivel-medio";
+      sugerencia = "Vas bien. Agregá detalles como a quién va dirigido, de qué se trata y estilo de redacción.";
+      explicacion = "Hay una intención clara, pero faltan algunos datos clave para obtener una buena respuesta.";
     }
-    if (prompt.includes("factura") || prompt.includes("cordial") || prompt.includes("formal") || prompt.includes("detalle")) {
+    if (
+      prompt.includes("factura") ||
+      prompt.includes("cordial") ||
+      prompt.includes("formal") ||
+      prompt.includes("detalle") ||
+      prompt.includes("seguimiento") ||
+      prompt.includes("informe") ||
+      prompt.includes("cliente") ||
+      prompt.includes("cotización") ||
+      prompt.includes("paso a paso")
+    ) {
       nivel = "🟢 Alto";
-      sugerencia = "¡Muy bien! Prompt claro, completo y útil para IA.";
+      claseNivel = "nivel-alto";
+      sugerencia = "¡Excelente! Prompt claro, completo y enfocado. La IA podrá ayudarte mejor.";
+      explicacion = "El prompt tiene contexto, intención y detalles específicos.";
     }
   }
 
-  analisis.innerHTML = `<strong>📊 Análisis del prompt:</strong><br><b>Nivel:</b> ${nivel}<br><b>Sugerencia:</b> ${sugerencia}`;
+  analisis.innerHTML = `
+    <strong>📊 Análisis del prompt:</strong><br>
+    <b class="${claseNivel}">Nivel: ${nivel}</b><br>
+    <b>Explicación:</b> ${explicacion}<br>
+    <b>Sugerencia:</b> ${sugerencia}
+  `;
   respuesta.innerHTML = `<strong>🤖 Respuesta simulada de IA:</strong><br>${escenarios[area].respuestaIA}`;
 
-  analisis.classList.remove("oculto");
+  analisis.className = `evaluacion ${claseNivel}`;
   respuesta.classList.remove("oculto");
+  respuesta.classList.add("respuesta", "highlight");
+
+  setTimeout(() => {
+    respuesta.classList.remove("highlight");
+  }, 600);
 }
 
 function reiniciar() {
   document.getElementById("promptInput").value = "";
-  document.getElementById("analisis").classList.add("oculto");
+  document.getElementById("analisis").className = "evaluacion oculto";
   document.getElementById("respuesta").classList.add("oculto");
 }
 

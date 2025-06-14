@@ -2,33 +2,42 @@
 <html lang="es">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>Simulador de IA - Maxiseguridad</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador IA - Maxiseguridad</title>
+  <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body>
   <div class="container">
     <header>
-      <img src="https://www.maxiseguridad.com/assets/images/logo.png" alt="Maxiseguridad Logo" class="logo" />
+      <img src="https://www.maxiseguridad.com/assets/images/logo.png" alt="Maxiseguridad Logo" class="logo">
       <h1>🧠 Simulador de IA aplicada al trabajo</h1>
       <p class="eslogan">“Aprender a escribir y saber preguntar”</p>
     </header>
 
-    <div class="contenido">
+    <div class="formulario">
       <label for="areaSelect">📂 Elegí un área:</label>
       <select id="areaSelect" onchange="cambiarEscenario()">
         <option value="">-- Seleccionar área --</option>
-        <option value="cobranzas">🧾 Administración - Cobranzas</option>
-        <option value="rrhh">👥 Administración - Recursos Humanos</option>
-        <option value="finanzas">💰 Administración - Finanzas</option>
+        <option value="cobranzas">🧾 Cobranzas</option>
+        <option value="rrhh">👥 Recursos Humanos</option>
+        <option value="finanzas">💰 Finanzas</option>
         <option value="compras">📦 Compras / Proveedores</option>
-        <option value="ventas">🛍️ Comercial - Ventas</option>
+        <option value="ventas">🛍️ Ventas</option>
         <option value="atencion">📞 Atención al Cliente</option>
         <option value="tecnica">🔧 Técnica</option>
         <option value="cotizaciones">📄 Cotizaciones</option>
         <option value="obras">🏗️ Obras</option>
+      </select>
+
+      <label for="nivelSelect">🎯 Elegí el nivel:</label>
+      <select id="nivelSelect" onchange="cambiarEscenario()">
+        <option value="">-- Seleccionar nivel --</option>
+        <option value="facil">✅ Fácil</option>
+        <option value="intermedio">🔷 Intermedio</option>
+        <option value="dificil">🔥 Difícil</option>
       </select>
 
       <div id="escenario" class="escenario oculto"></div>
@@ -37,15 +46,15 @@
       <textarea id="promptInput" rows="4"
         placeholder="Ej: Redactá un mail amable para reclamar una factura vencida..."></textarea>
 
-      <div class="botones">
+      <div class="acciones">
         <button onclick="procesarPrompt()">✅ Enviar</button>
         <button onclick="reiniciar()">🔄 Nuevo intento</button>
         <button onclick="exportarPDF()">📄 Exportar PDF</button>
       </div>
-
-      <div id="analisis" class="resultado oculto"></div>
-      <div id="respuesta" class="resultado oculto"></div>
     </div>
+
+    <div id="analisis" class="evaluacion oculto"></div>
+    <div id="respuesta" class="respuesta oculto"></div>
   </div>
 
   <script src="script.js"></script>

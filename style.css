@@ -3,36 +3,47 @@ body {
   background: #f4f4f4;
   margin: 0;
   padding: 0;
+  color: #333;
 }
 
 .container {
-  max-width: 900px;
-  margin: auto;
-  background: white;
-  padding: 20px 30px;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 960px;
+  margin: 30px auto;
+  background: #fff;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  animation: fadeIn 0.6s ease;
 }
 
 .logo {
   width: 180px;
+  display: block;
+  margin: 0 auto 20px;
 }
 
 header {
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 2em;
+  margin: 0.2em 0;
+  color: #c30000;
 }
 
 .eslogan {
   font-style: italic;
-  color: #555;
-  margin-top: 5px;
+  color: #666;
+  font-size: 1em;
 }
 
 label {
+  font-weight: 600;
+  margin-top: 1.5em;
   display: block;
-  margin-top: 20px;
-  font-weight: bold;
+  font-size: 1.05em;
 }
 
 select,
@@ -40,12 +51,15 @@ textarea {
   width: 100%;
   padding: 12px;
   font-size: 16px;
-  margin-top: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  margin-top: 0.5em;
   box-sizing: border-box;
 }
 
 textarea {
   resize: vertical;
+  min-height: 100px;
 }
 
 .botones {
@@ -53,51 +67,143 @@ textarea {
   display: flex;
   gap: 10px;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 button {
-  background: #C30000;
+  background: #c30000;
   color: white;
   border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
+  padding: 12px 20px;
+  font-size: 15px;
+  border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 button:hover {
-  background: #a60000;
+  background: #9f0000;
+  transform: scale(1.03);
 }
 
 .escenario,
-.resultado {
+.evaluacion,
+.respuesta {
   margin-top: 25px;
-  background: #fff3f3;
-  padding: 15px;
-  border-left: 5px solid #C30000;
-  animation: fadeIn 0.5s ease-in-out;
+  padding: 18px;
+  background: #fdf6f6;
+  border-left: 5px solid #c30000;
+  border-radius: 6px;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
-.oculto {
+#analisis.oculto,
+#respuesta.oculto,
+#escenario.oculto {
   display: none;
+}
+
+.highlight {
+  animation: pulse 0.5s ease-in-out;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateY(15px);
   }
 
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
-@media screen and (max-width: 600px) {
+@keyframes pulse {
+  0% {
+    background-color: #fff7f7;
+  }
+
+  100% {
+    background-color: #fdf6f6;
+  }
+}
+
+.nivel-bajo {
+  color: #c30000;
+  background-color: #ffe5e5;
+  padding: 6px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.nivel-medio {
+  color: #c49000;
+  background-color: #fff4d6;
+  padding: 6px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.nivel-alto {
+  color: #0c8b32;
+  background-color: #e5ffe9;
+  padding: 6px 10px;
+  border-radius: 5px;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.highlight {
+  animation: resaltar 0.6s ease-in-out;
+}
+
+@keyframes resaltar {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+
+  50% {
+    transform: scale(1.02);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  }
+
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+}
+
+#evaluacion strong {
+  font-size: 1.1em;
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+#respuestaIA {
+  white-space: pre-line;
+  font-style: italic;
+  color: #444;
+}
+
+@media screen and (max-width: 768px) {
   .botones {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .container {
+    padding: 20px;
   }
 
   .logo {
     width: 140px;
+  }
+
+  h1 {
+    font-size: 1.5em;
   }
 }
