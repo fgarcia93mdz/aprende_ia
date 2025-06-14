@@ -284,9 +284,19 @@ function exportarPDF() {
 function toggleGuia() {
   const guia = document.getElementById("guia");
   guia.classList.toggle("oculto");
+  localStorage.setItem("guiaVisible", !guia.classList.contains("oculto"));
 }
 
+
 window.addEventListener("DOMContentLoaded", () => {
+  const guia = document.getElementById("guia");
+  const guiaVisible = localStorage.getItem("guiaVisible");
+  if (guiaVisible === "true") {
+    guia.classList.remove("oculto");
+  } else {
+    guia.classList.add("oculto");
+  }
+
   const areaGuardada = localStorage.getItem("area");
   const nivelGuardado = localStorage.getItem("nivel");
 
@@ -295,3 +305,4 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (areaGuardada && nivelGuardado) cambiarEscenario();
 });
+

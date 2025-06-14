@@ -12,8 +12,9 @@
 <body>
   <div class="container">
     <header>
-      <img src="https://www.maxiseguridad.com/assets/images/logo.png" alt="Maxiseguridad Logo" class="logo">
+      <img src="logo_maxiseguridad.jpeg" alt="Maxiseguridad Logo" class="logo">
       <h1>🧠 Simulador de IA aplicada al trabajo</h1>
+      <h2 class="subtitulo">Expertos en Protección Contra Incendios</h2>
       <p class="eslogan">“Aprender a escribir y saber preguntar”</p>
     </header>
 
@@ -90,14 +91,15 @@
   </footer>
 
   <script>
-    // Mostrar la guía si el usuario ya la activó previamente
-    window.onload = () => {
+    window.addEventListener("DOMContentLoaded", () => {
       const guia = document.getElementById("guia");
       const guiaVisible = localStorage.getItem("guiaVisible");
       if (guiaVisible === "true") {
         guia.classList.remove("oculto");
+      } else {
+        guia.classList.add("oculto");
       }
-    };
+    });
 
     function toggleGuia() {
       const guia = document.getElementById("guia");
