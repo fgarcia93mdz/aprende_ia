@@ -50,6 +50,7 @@
         <button onclick="procesarPrompt()">✅ Enviar</button>
         <button onclick="reiniciar()">🔄 Nuevo intento</button>
         <button onclick="exportarPDF()">📄 Exportar PDF</button>
+        <button onclick="toggleGuia()">📘 Ver/Ocultar Guía</button>
       </div>
     </div>
 
@@ -57,6 +58,53 @@
     <div id="respuesta" class="respuesta oculto"></div>
   </div>
 
+  <section id="guia" class="guia-niveles oculto">
+    <h2>📘 Guía: Niveles de redacción de prompts</h2>
+
+    <div class="nivel">
+      <h3>🔴 Bajo</h3>
+      <p><strong>Descripción:</strong> Prompt muy general, sin contexto ni acción clara.</p>
+      <p><strong>Ejemplo:</strong> “Ayudame con esto.”</p>
+      <p><strong>Sugerencia:</strong> Agregá objetivo, destinatario y tipo de respuesta esperada.</p>
+    </div>
+
+    <div class="nivel">
+      <h3>🟡 Medio</h3>
+      <p><strong>Descripción:</strong> Prompt con intención clara pero faltan detalles.</p>
+      <p><strong>Ejemplo:</strong> “Escribí un correo para cobrar una factura.”</p>
+      <p><strong>Sugerencia:</strong> Indicá tono, plazo de vencimiento, número de factura y a quién va dirigido.</p>
+    </div>
+
+    <div class="nivel">
+      <h3>🟢 Alto</h3>
+      <p><strong>Descripción:</strong> Prompt específico, claro y orientado a resultados.</p>
+      <p><strong>Ejemplo:</strong> “Redactá un mail cordial para el cliente Juan Pérez, recordando el pago de la factura
+        N°243 vencida hace 10 días.”</p>
+      <p><strong>Sugerencia:</strong> ¡Excelente! Ya estás escribiendo como un experto en IA.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2023 Maxiseguridad. Todos los derechos reservados.</p>
+    <p>Desarrollado por <a href="https://www.maxiseguridad.com" target="_blank">Maxiseguridad</a></p>
+  </footer>
+
+  <script>
+    // Mostrar la guía si el usuario ya la activó previamente
+    window.onload = () => {
+      const guia = document.getElementById("guia");
+      const guiaVisible = localStorage.getItem("guiaVisible");
+      if (guiaVisible === "true") {
+        guia.classList.remove("oculto");
+      }
+    };
+
+    function toggleGuia() {
+      const guia = document.getElementById("guia");
+      guia.classList.toggle("oculto");
+      localStorage.setItem("guiaVisible", !guia.classList.contains("oculto"));
+    }
+  </script>
   <script src="script.js"></script>
 </body>
 
