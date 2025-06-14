@@ -343,3 +343,82 @@ button.borrar:hover {
     font-size: 1.4em;
   }
 }
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal-contenido {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.modal-contenido h3 {
+  margin-top: 0;
+  color: #c30000;
+}
+
+.modal-contenido p {
+  margin: 15px 0;
+  color: #444;
+}
+
+.modal-acciones {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.modal-acciones button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.95em;
+  transition: background 0.3s ease;
+}
+
+.modal-acciones .cancelar {
+  background: #ccc;
+  color: #333;
+}
+
+.modal-acciones .cancelar:hover {
+  background: #aaa;
+}
+
+.modal-acciones .confirmar {
+  background: #c30000;
+  color: white;
+}
+
+.modal-acciones .confirmar:hover {
+  background: #9f0000;
+}
+
+#historialTabla p {
+  text-align: center;
+  background: #fff5f5;
+  color: #c30000;
+  padding: 16px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+  font-style: italic;
+}

@@ -4,6 +4,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Simulador de IA aplicada al trabajo para mejorar la redacción de prompts.">
+  <meta name="keywords" content="IA, inteligencia artificial, redacción de prompts, Maxiseguridad, protección contra incendios">
+  <meta name="author" content="Maxiseguridad">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="manifest.json">
   <title>Simulador IA - Maxiseguridad</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -114,28 +120,22 @@
     <button class="borrar" onclick="borrarHistorial()">🗑️ Borrar historial</button>
   </section>
 
+  <div id="modalConfirmacion" class="modal oculto">
+    <div class="modal-contenido">
+      <h3>🗑️ ¿Estás seguro?</h3>
+      <p>Se borrará todo el historial y se reiniciarán los campos. Esta acción no se puede deshacer.</p>
+      <div class="modal-acciones">
+        <button class="cancelar" onclick="cerrarModal()">Cancelar</button>
+        <button class="confirmar" onclick="confirmarBorrado()">Sí, borrar todo</button>
+      </div>
+    </div>
+  </div>
+  
   <footer>
     <p>© 2023 Maxiseguridad. Todos los derechos reservados.</p>
     <p>Desarrollado por <a href="https://www.maxiseguridad.com" target="_blank">Maxiseguridad</a></p>
   </footer>
 
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const guia = document.getElementById("guia");
-      const guiaVisible = localStorage.getItem("guiaVisible");
-      if (guiaVisible === "true") {
-        guia.classList.remove("oculto");
-      } else {
-        guia.classList.add("oculto");
-      }
-    });
-
-    function toggleGuia() {
-      const guia = document.getElementById("guia");
-      guia.classList.toggle("oculto");
-      localStorage.setItem("guiaVisible", !guia.classList.contains("oculto"));
-    }
-  </script>
   <script src="script.js"></script>
 </body>
 

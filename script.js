@@ -290,10 +290,17 @@ function toggleGuia() {
 window.addEventListener("DOMContentLoaded", () => {
   const guia = document.getElementById("guia");
   const guiaVisible = localStorage.getItem("guiaVisible");
+  const historialData = JSON.parse(localStorage.getItem("historialIA")) || [];
+
   if (guiaVisible === "true") {
     guia.classList.remove("oculto");
   } else {
     guia.classList.add("oculto");
+  }
+
+  if (historialData.length === 0) {
+    document.getElementById("pantallaFinal").classList.add("oculto");
+    document.getElementById("historial").classList.add("oculto");
   }
 
   const areaGuardada = localStorage.getItem("area");
@@ -304,6 +311,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   if (areaGuardada && nivelGuardado) cambiarEscenario();
 });
+
 
 function mostrarPantallaFinal(nivelDetectado) {
   const pantalla = document.getElementById("pantallaFinal");
@@ -422,9 +430,14 @@ function exportarHistorial() {
 }
 
 function borrarHistorial() {
-  const confirmar = confirm("¿Estás seguro de que querés borrar todo el historial y reiniciar los campos?");
-  if (!confirmar) return;
+  document.getElementById("modalConfirmacion").classList.remove("oculto");
+}
 
+function cerrarModal() {
+  document.getElementById("modalConfirmacion").classList.add("oculto");
+}
+
+function confirmarBorrado() {
   localStorage.removeItem("historialIA");
 
   document.getElementById("historialTabla").innerHTML = "<p>Historial borrado exitosamente.</p>";
@@ -439,5 +452,10 @@ function borrarHistorial() {
   document.getElementById("analisis").classList.add("oculto");
   document.getElementById("respuesta").classList.add("oculto");
   document.getElementById("escenario").classList.add("oculto");
+  document.getElementById("pantallaFinal").classList.add("oculto");
+  document.getElementById("historial").classList.add("oculto");
+
+  cerrarModal();
 }
+
 
