@@ -456,3 +456,5 @@ function confirmarBorrado() {
 }
 
 
+window.cerrarModal = cerrarModal;
+window.confirmarBorrado = confirmarBorrado;
