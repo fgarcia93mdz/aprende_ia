@@ -252,7 +252,6 @@ function procesarPrompt() {
   mostrarPantallaFinal(claseNivel);
 }
 
-
 function reiniciar() {
   document.getElementById("promptInput").value = "";
   document.getElementById("analisis").className = "evaluacion oculto";
@@ -286,7 +285,6 @@ function toggleGuia() {
   localStorage.setItem("guiaVisible", !guia.classList.contains("oculto"));
 }
 
-
 window.addEventListener("DOMContentLoaded", () => {
   const guia = document.getElementById("guia");
   const guiaVisible = localStorage.getItem("guiaVisible");
@@ -310,8 +308,9 @@ window.addEventListener("DOMContentLoaded", () => {
   if (nivelGuardado) document.getElementById("nivelSelect").value = nivelGuardado;
 
   if (areaGuardada && nivelGuardado) cambiarEscenario();
-});
 
+  document.getElementById("modalConfirmacion").classList.add("oculto");
+});
 
 function mostrarPantallaFinal(nivelDetectado) {
   const pantalla = document.getElementById("pantallaFinal");
@@ -358,7 +357,6 @@ function guardarEnHistorial(area, nivel, prompt, nivelDetectado) {
   localStorage.setItem("historialIA", JSON.stringify(historial));
 }
 
-
 function mostrarHistorial() {
   const tablaContenedor = document.getElementById("historialTabla");
   const historial = JSON.parse(localStorage.getItem("historialIA")) || [];
@@ -390,7 +388,6 @@ function mostrarHistorial() {
 
   document.getElementById("historial").classList.remove("oculto");
 }
-
 
 function ocultarHistorial() {
   document.getElementById("historial").classList.add("oculto");

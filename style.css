@@ -413,6 +413,10 @@ button.borrar:hover {
   background: #9f0000;
 }
 
+.modal.oculto {
+  display: none !important;
+}
+
 #historialTabla p {
   text-align: center;
   background: #fff5f5;
