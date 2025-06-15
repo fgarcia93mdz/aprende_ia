@@ -14,6 +14,7 @@
   <title>Simulador IA - Maxiseguridad</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 
 <body>
@@ -24,7 +25,7 @@
       <h2 class="subtitulo">Expertos en Protección Contra Incendios</h2>
       <p class="eslogan">“Aprender a escribir y saber preguntar”</p>
     </header>
-  
+
     <div id="bloqueFormulario">
       <div class="bienvenida">
         <h2>👋 Bienvenido al simulador de IA</h2>
@@ -63,7 +64,7 @@
           <button onclick="continuarUsuario()">Continuar</button>
         </div>
       </div>
-  
+
       <div class="formulario oculto" id="formPrompt">
         <label for="areaSelect">📂 Elegí un área:</label>
         <select id="areaSelect" onchange="cambiarEscenario()">
@@ -89,8 +90,8 @@
           <option value="reportes">📊 Reportes e Informes</option>
           <option value="comprension">📖 Comprensión Lectora</option>
         </select>
-        
-  
+
+
         <label for="nivelSelect">🎯 Elegí el nivel:</label>
         <select id="nivelSelect" onchange="cambiarEscenario()">
           <option value="">-- Seleccionar nivel --</option>
@@ -98,42 +99,39 @@
           <option value="intermedio">🔷 Intermedio</option>
           <option value="dificil">🔥 Difícil</option>
         </select>
-  
+
         <div id="escenario" class="escenario oculto"></div>
-  
+
         <label for="promptInput">✍️ Escribí tu prompt:</label>
         <textarea id="promptInput" rows="4"
           placeholder="Ej: Redactá un mail amable para reclamar una factura vencida..."></textarea>
-  
+
         <div class="acciones" id="accionesIniciales">
           <button onclick="procesarPrompt()">Enviar</button>
           <button onclick="reiniciar()" class="gris">Borrar</button>
           <button onclick="toggleGuia()" class="gris">Guía de Niveles</button>
         </div>
-  
-        <div class="acciones oculto" id="accionesResultado">
-          <button id="btnExportarPDF" onclick="exportarPDF()">Exportar PDF</button>
-          <button id="btnExportarHistorial" onclick="mostrarHistorial()">Ver historial</button>
-          <button onclick="reiniciar()" class="gris">Nueva práctica</button>
-        </div>
+
+
       </div>
-  
+
       <div id="analisis" class="evaluacion oculto"></div>
       <div id="respuesta" class="respuesta oculto"></div>
     </div>
-  
+
     <section id="pantallaFinal" class="oculto">
       <div class="resultado-final">
         <h2>🏁 ¡Resultado final!</h2>
         <p id="insigniaFinal" class="insignia"></p>
         <div id="estrellasFinal" class="estrellas"></div>
         <div id="resumenPrompt" class="resumen-final"></div>
+        <button id="btnExportarPDF" onclick="exportarYEnviar()" class="gris">📄 Exportar PDF</button>
+        <button id="btnExportarHistorial" onclick="mostrarHistorial()">📜 Ver historial</button>
         <button onclick="mostrarHistorial()">📜 Ver historial de prácticas</button>
-        <button onclick="exportarHistorial()">📄 Exportar historial PDF</button>
-        <button onclick="reiniciar()">🔄 Volver a intentar</button>
+        <button onclick="reiniciar()">🔄 Nueva práctica</button>
       </div>
     </section>
-    </div>
+  </div>
 
   <section id="guia" class="guia-niveles oculto">
     <h2>📘 Guía: Niveles de redacción de prompts</h2>
@@ -157,17 +155,18 @@
       <p><strong>Sugerencia:</strong> ¡Excelente! Ya estás escribiendo como un experto en IA.</p>
     </div>
   </section>
-  
+
   <section id="historial" class="oculto">
     <h2>🗂️ Historial de prácticas</h2>
     <div id="historialTabla"></div>
     <div style="text-align:center;">
       <button onclick="ocultarHistorial()">⬅️ Ocultar historial</button>
+      <button onclick="exportarHistorial()">📄 Exportar historial PDF</button>
       <button class="borrar" onclick="borrarHistorial()">🗑️ Borrar historial</button>
     </div>
-    </section>
+  </section>
 
-  
+
 
   <div id="modalConfirmacion" class="modal oculto">
     <div class="modal-contenido">

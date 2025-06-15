@@ -20,9 +20,10 @@ body {
 }
 
 .logo {
-  width: 160px;
+  max-width: 200px;
+  height: auto;
   display: block;
-  margin: 0 auto 10px;
+  margin: 0 auto 16px auto;
 }
 
 header {
@@ -76,8 +77,8 @@ textarea {
 .acciones {
   margin-top: 20px;
   display: flex;
-  flex-wrap: wrap;
   gap: 12px;
+  flex-wrap: wrap;
   justify-content: center;
 }
 
@@ -107,8 +108,8 @@ button:focus {
 }
 
 button.gris {
-  background: linear-gradient(to bottom, #999, #666);
-  border: 1px solid #444;
+  background-color: #ccc;
+  color: #333;
 }
 
 button.gris:hover {
@@ -227,15 +228,13 @@ button.borrar:hover {
 }
 
 .resultado-final {
-  margin-top: 50px;
-  margin-bottom: 60px;
-  padding: 18px;
-  background: linear-gradient(to bottom, #fff, #fdf0f0);
-  border: 2px solid #c30000;
-  border-radius: 14px;
-  text-align: center;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.3s ease;
+  max-width: 800px;
+  width: 100%;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 24px;
+  color: #222;
+  overflow: visible;
 }
 
 .resultado-final:hover {
@@ -417,7 +416,11 @@ footer a:hover {
 }
 
 #pantallaFinal {
-  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
+  background: #fff;
+  color: #222;
+  overflow: visible;
 }
 
 .resumen-final {
@@ -555,8 +558,11 @@ label {
   .resultado-final,
   .bloque-analisis,
   .bloque-respuesta {
-    padding: 16px;
-    font-size: 0.95em;
+    background: #fff !important;
+    color: #222 !important;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+    line-height: 1.5;
   }
 
   .estrellas {
@@ -577,5 +583,40 @@ label {
   footer {
     font-size: 0.75em;
     padding: 15px 10px;
+  }
+}
+
+.evaluacion,
+.respuesta,
+.bloque-analisis,
+.bloque-respuesta {
+  background: #fff !important;
+  color: #222 !important;
+  border-radius: 8px;
+  padding: 16px 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  font-size: 16px;
+  font-family: Arial, sans-serif;
+  line-height: 1.5;
+}
+.evaluacion strong,
+.respuesta strong {
+  color: #c30000 !important;
+}
+.nivel-bajo { color: #c30000 !important; }
+.nivel-medio { color: #e6a700 !important; }
+.nivel-alto { color: #0c8b32 !important; }
+
+@media print {
+
+  .bloque-analisis,
+  .bloque-respuesta,
+  .evaluacion,
+  .respuesta {
+    background: #fff !important;
+    color: #222 !important;
+    box-shadow: none !important;
+    border-left: 5px solid #c30000 !important;
   }
 }

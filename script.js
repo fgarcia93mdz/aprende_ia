@@ -1081,39 +1081,84 @@ function cambiarEscenario() {
 }
 
 function exportarPDF() {
-  return new Promise((resolve) => {
-    const area = document.getElementById("areaSelect").value;
-    const nivel = document.getElementById("nivelSelect").value;
-    const prompt = document.getElementById("promptInput").value;
-    const analisis = document.getElementById("analisis").innerHTML;
-    const respuesta = document.getElementById("respuesta").innerHTML;
+  return new Promise((resolve, reject) => {
+    const nombre = document.getElementById("nombre").value || "";
+    const apellido = document.getElementById("apellido").value || "";
+    const sector = document.getElementById("sector").value || "";
+    const promptUsuario = document.getElementById("promptInput")?.value || "";
+    const analisis = document.getElementById("analisis");
+    const respuesta = document.getElementById("respuesta");
 
-    if (!area || !nivel || !prompt) {
-      alert("Completá todos los campos antes de exportar.");
+    if (!analisis || !analisis.innerHTML.trim()) {
+      alert("No hay análisis para exportar.");
+      reject("No hay análisis para exportar.");
       return;
     }
 
-    const element = document.createElement("div");
-    element.innerHTML = `
-      <h2 style="color:#c30000;">Simulador IA - Resultado</h2>
-      <p><strong>Área:</strong> ${area}</p>
-      <p><strong>Nivel:</strong> ${nivel}</p>
-      <p><strong>Prompt:</strong> ${prompt}</p>
-      <div>${analisis}</div>
-      <div>${respuesta}</div>
+    const tempDiv = document.createElement("div");
+    tempDiv.style.background = "#fff";
+    tempDiv.style.color = "#222";
+    tempDiv.style.fontFamily = "Arial, sans-serif";
+    tempDiv.style.fontSize = "18px";
+    tempDiv.style.padding = "32px";
+    tempDiv.style.maxWidth = "700px";
+    tempDiv.style.lineHeight = "1.6";
+
+    tempDiv.innerHTML = `
+      <h2 style="color:#c30000; font-size:2em; margin-bottom:24px;">Resultado de tu práctica IA</h2>
+      <p><b>Nombre:</b> ${nombre} ${apellido}<br>
+      <b>Sector:</b> ${sector}</p>
+      <p><b>Prompt escrito:</b> <span style="color:#0c8b32;">${promptUsuario}</span></p>
+      <div style="
+        background:#fff;
+        color:#222;
+        border-left:5px solid #c30000;
+        border-radius:10px;
+        padding:18px 22px;
+        margin-top:32px;
+        margin-bottom:12px;
+        font-size:1.1em;
+        box-shadow:none;
+      ">
+        ${analisis.querySelector('.bloque-analisis') 
+          ? analisis.querySelector('.bloque-analisis').innerHTML
+          : analisis.innerHTML}
+      </div>
+      <div style="
+        background:#f9f9f9;
+        color:#222;
+        border-left:5px solid #0c8b32;
+        border-radius:10px;
+        padding:18px 22px;
+        margin-bottom:12px;
+        font-size:1.1em;
+        box-shadow:none;
+      ">
+        <strong>🤖 Respuesta simulada de IA:</strong><br>
+        ${respuesta ? respuesta.textContent : ""}
+      </div>
     `;
 
-    document.body.appendChild(element);
+    document.body.appendChild(tempDiv);
 
-    html2pdf().from(element).set({
-      margin: 10,
-      filename: `resultado-ia-${area}-${nivel}.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
+    html2pdf().from(tempDiv).set({
+      margin: [10, 10, 10, 10],
+      filename: `simulador_ia_${nombre}_${apellido}_${sector}.pdf`,
+      image: { type: 'jpeg', quality: 1 },
+      html2canvas: { scale: 4, useCORS: true, scrollY: 0, backgroundColor: "#fff" },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
     }).save().then(() => {
-      document.body.removeChild(element);
+      document.body.removeChild(tempDiv);
+      const aviso = document.getElementById("avisoExportacion");
+      if (aviso) {
+        aviso.style.display = "block";
+        setTimeout(() => aviso.style.display = "none", 3000);
+      }
       resolve();
+    }).catch(err => {
+      document.body.removeChild(tempDiv);
+      console.error("Error al generar PDF:", err);
+      reject(err);
     });
   });
 }
@@ -1164,7 +1209,6 @@ window.addEventListener("DOMContentLoaded", () => {
 
   document.getElementById("modalConfirmacion").classList.add("oculto");
   document.getElementById("accionesIniciales").classList.remove("oculto");
-  document.getElementById("accionesResultado").classList.add("oculto");
   document.getElementById("nombre").value = "";
   document.getElementById("apellido").value = "";
   document.getElementById("sector").value = "";
@@ -1244,14 +1288,21 @@ function procesarPrompt() {
     </ul>
   `;
 
-  analisis.innerHTML = `
-    <strong>📊 Análisis del prompt:</strong><br>
-    <b class="${claseNivel}">Nivel: ${nivelTexto}</b><br>
-    <b>Explicación:</b> ${explicacion}<br>
-    <b>Sugerencia:</b> ${sugerencia}<br>
-    ${checklist}
+   analisis.innerHTML = `
+    <div class="bloque-analisis">
+      <strong>📊 Análisis del prompt:</strong><br>
+      <b class="${claseNivel}">Nivel: ${nivelTexto}</b><br>
+      <b>Explicación:</b> ${explicacion}<br>
+      <b>Sugerencia:</b> ${sugerencia}<br>
+      ${checklist}
+    </div>
   `;
-  respuesta.innerHTML = `<strong>🤖 Respuesta simulada de IA:</strong><br>${(escenarios[area] && escenarios[area][nivel]) ? escenarios[area][nivel].respuestaIA : 'No disponible.'}`;
+  respuesta.innerHTML = `
+    <div class="bloque-respuesta">
+      <strong>🤖 Respuesta simulada de IA:</strong><br>
+      ${(escenarios[area] && escenarios[area][nivel]) ? escenarios[area][nivel].respuestaIA : 'No disponible.'}
+    </div>
+  `;
 
   analisis.className = `evaluacion ${claseNivel}`;
   respuesta.classList.remove("oculto");
@@ -1263,7 +1314,6 @@ function procesarPrompt() {
   mostrarPantallaFinal(claseNivel, explicacion, sugerencia, area, nivel, nivelTexto);
 
   document.getElementById("accionesIniciales").classList.add("oculto");
-  document.getElementById("accionesResultado").classList.remove("oculto");
 }
 
 function mostrarPantallaFinal(nivelDetectado, explicacion, sugerencia, area, nivel, textoNivel) {
@@ -1303,18 +1353,16 @@ function mostrarPantallaFinal(nivelDetectado, explicacion, sugerencia, area, niv
     </div>
   `;
 
-  bloqueFormulario.classList.add("oculto");
+  if (bloqueFormulario) bloqueFormulario.classList.add("oculto");
   pantalla.classList.remove("oculto");
   pantalla.scrollIntoView({ behavior: "smooth" });
 }
-
 
 function reiniciar() {
   document.getElementById("promptInput").value = "";
   document.getElementById("analisis").className = "evaluacion oculto";
   document.getElementById("respuesta").classList.add("oculto");
   document.getElementById("accionesIniciales").classList.remove("oculto");
-  document.getElementById("accionesResultado").classList.add("oculto");
   document.getElementById("pantallaFinal").classList.add("oculto");
   document.getElementById("bloqueFormulario").classList.remove("oculto");
   document.querySelector('.formulario-usuario').classList.remove('oculto');
@@ -1337,7 +1385,8 @@ function guardarEnHistorial(area, nivel, prompt, nivelDetectado) {
     area,
     nivel,
     prompt,
-    evaluacion: nivelDetectado
+    evaluacion: nivelDetectado,
+    respuesta: escenarios[area][nivel].respuestaIA
   });
 
   localStorage.setItem("historialIA", JSON.stringify(historial));
@@ -1440,7 +1489,6 @@ function confirmarBorrado() {
 
   cerrarModal();
 }
-
 
 window.cerrarModal = cerrarModal;
 window.confirmarBorrado = confirmarBorrado;
