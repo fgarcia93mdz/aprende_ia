@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Simulador de IA aplicada al trabajo para mejorar la redacción de prompts.">
-  <meta name="keywords" content="IA, inteligencia artificial, redacción de prompts, Maxiseguridad, protección contra incendios">
+  <meta name="keywords"
+    content="IA, inteligencia artificial, redacción de prompts, Maxiseguridad, protección contra incendios">
   <meta name="author" content="Maxiseguridad">
   <link rel="icon" href="./logo_maxiseguridad.jpeg" type="image/x-icon">
   <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -23,76 +24,131 @@
       <h2 class="subtitulo">Expertos en Protección Contra Incendios</h2>
       <p class="eslogan">“Aprender a escribir y saber preguntar”</p>
     </header>
-
-    <div class="formulario-usuario">
-      <label for="nombre">👤 Nombre:</label>
-      <input type="text" id="nombre" placeholder="Ej: Juan">
-    
-      <label for="apellido">👤 Apellido:</label>
-      <input type="text" id="apellido" placeholder="Ej: Pérez">
-    
-      <label for="sector">🏢 Sector:</label>
-      <input type="text" id="sector" placeholder="Ej: Comercial, Técnico, RRHH...">
-    </div>    
-
-    <div class="formulario">
-      <label for="areaSelect">📂 Elegí un área:</label>
-      <select id="areaSelect" onchange="cambiarEscenario()">
-        <option value="">-- Seleccionar área --</option>
-        <option value="cobranzas">🧾 Cobranzas</option>
-        <option value="rrhh">👥 Recursos Humanos</option>
-        <option value="finanzas">💰 Finanzas</option>
-        <option value="compras">📦 Compras / Proveedores</option>
-        <option value="ventas">🛍️ Ventas</option>
-        <option value="atencion">📞 Atención al Cliente</option>
-        <option value="tecnica">🔧 Técnica</option>
-        <option value="cotizaciones">📄 Cotizaciones</option>
-        <option value="obras">🏗️ Obras</option>
-      </select>
-
-      <label for="nivelSelect">🎯 Elegí el nivel:</label>
-      <select id="nivelSelect" onchange="cambiarEscenario()">
-        <option value="">-- Seleccionar nivel --</option>
-        <option value="facil">✅ Fácil</option>
-        <option value="intermedio">🔷 Intermedio</option>
-        <option value="dificil">🔥 Difícil</option>
-      </select>
-
-      <div id="escenario" class="escenario oculto"></div>
-
-      <label for="promptInput">✍️ Escribí tu prompt:</label>
-      <textarea id="promptInput" rows="4"
-        placeholder="Ej: Redactá un mail amable para reclamar una factura vencida..."></textarea>
-
-      <div class="acciones">
-        <button onclick="procesarPrompt()">✅ Enviar</button>
-        <button onclick="reiniciar()">🔄 Nuevo intento</button>
-        <button onclick="exportarPDF()">📄 Exportar PDF</button>
-        <button onclick="toggleGuia()">📘 Ver/Ocultar Guía</button>
+  
+    <div id="bloqueFormulario">
+      <div class="bienvenida">
+        <h2>👋 Bienvenido al simulador de IA</h2>
+        <p>Este simulador te ayudará a mejorar tu habilidad para redactar prompts efectivos y claros.</p>
+        <p>Podés practicar con diferentes áreas y niveles de dificultad.</p>
+        <p>¡Comencemos!</p>
       </div>
-    </div>
 
-    <div id="analisis" class="evaluacion oculto"></div>
-    <div id="respuesta" class="respuesta oculto"></div>
-  </div>
+      <div class="instrucciones">
+        <h3>📋 Instrucciones:</h3>
+        <ol>
+          <li>Completa el formulario de usuario.</li>
+          <li>Selecciona un área y nivel de dificultad.</li>
+          <li>Escribe tu prompt y envíalo.</li>
+          <li>Recibirás una evaluación y sugerencias para mejorar.</li>
+          <li>Podés exportar tus resultados a PDF o ver el historial de prácticas.</li>
+        </ol>
+      </div>
+
+      <div class="formulario-usuario" id="formUsuario">
+        <h2>👤 Datos del usuario</h2>
+        <p>Por favor, completá tus datos para comenzar a practicar.</p>
+        <div>
+          <label for="nombre">👤 Nombre:</label>
+          <input type="text" id="nombre" placeholder="Ej: Juan" required>
+        </div>
+        <div>
+          <label for="apellido">👤 Apellido:</label>
+          <input type="text" id="apellido" placeholder="Ej: Pérez" required>
+        </div>
+        <div>
+          <label for="sector">🏢 Sector:</label>
+          <input type="text" id="sector" placeholder="Ej: Comercial, Técnico, RRHH..." required>
+        </div>
+        <div class="acciones">
+          <button onclick="continuarUsuario()">Continuar</button>
+        </div>
+      </div>
+  
+      <div class="formulario oculto" id="formPrompt">
+        <label for="areaSelect">📂 Elegí un área:</label>
+        <select id="areaSelect" onchange="cambiarEscenario()">
+          <option value="">-- Seleccionar área --</option>
+          <option value="cobranzas">🧾 Cobranzas</option>
+          <option value="rrhh">👥 Recursos Humanos</option>
+          <option value="finanzas">💰 Finanzas</option>
+          <option value="compras">📦 Compras / Proveedores</option>
+          <option value="ventas">🛍️ Ventas</option>
+          <option value="atencion">📞 Atención al Cliente</option>
+          <option value="tecnica">🔧 Técnica</option>
+          <option value="cotizaciones">📄 Cotizaciones</option>
+          <option value="obras">🏗️ Obras</option>
+          <option value="logistica">🚚 Logística</option>
+          <option value="ingenieria">🛠️ Ingeniería</option>
+          <option value="sdr">📞 SDR / Prospección</option>
+          <option value="ifci_control">🔥 Control Técnico IFCI</option>
+          <option value="ifci_mantenimiento">🧯 Mantenimiento Correctivo IFCI</option>
+          <option value="ifci_coordinacion">📋 Coordinación de Equipos</option>
+          <option value="sistemas">💻 Sistemas / IT</option>
+          <option value="marketing">📢 Marketing</option>
+          <option value="comunicaciones">📨 Comunicaciones Internas</option>
+          <option value="reportes">📊 Reportes e Informes</option>
+          <option value="comprension">📖 Comprensión Lectora</option>
+        </select>
+        
+  
+        <label for="nivelSelect">🎯 Elegí el nivel:</label>
+        <select id="nivelSelect" onchange="cambiarEscenario()">
+          <option value="">-- Seleccionar nivel --</option>
+          <option value="facil">✅ Fácil</option>
+          <option value="intermedio">🔷 Intermedio</option>
+          <option value="dificil">🔥 Difícil</option>
+        </select>
+  
+        <div id="escenario" class="escenario oculto"></div>
+  
+        <label for="promptInput">✍️ Escribí tu prompt:</label>
+        <textarea id="promptInput" rows="4"
+          placeholder="Ej: Redactá un mail amable para reclamar una factura vencida..."></textarea>
+  
+        <div class="acciones" id="accionesIniciales">
+          <button onclick="procesarPrompt()">Enviar</button>
+          <button onclick="reiniciar()" class="gris">Borrar</button>
+          <button onclick="toggleGuia()" class="gris">Guía de Niveles</button>
+        </div>
+  
+        <div class="acciones oculto" id="accionesResultado">
+          <button id="btnExportarPDF" onclick="exportarPDF()">Exportar PDF</button>
+          <button id="btnExportarHistorial" onclick="mostrarHistorial()">Ver historial</button>
+          <button onclick="reiniciar()" class="gris">Nueva práctica</button>
+        </div>
+      </div>
+  
+      <div id="analisis" class="evaluacion oculto"></div>
+      <div id="respuesta" class="respuesta oculto"></div>
+    </div>
+  
+    <section id="pantallaFinal" class="oculto">
+      <div class="resultado-final">
+        <h2>🏁 ¡Resultado final!</h2>
+        <p id="insigniaFinal" class="insignia"></p>
+        <div id="estrellasFinal" class="estrellas"></div>
+        <div id="resumenPrompt" class="resumen-final"></div>
+        <button onclick="mostrarHistorial()">📜 Ver historial de prácticas</button>
+        <button onclick="exportarHistorial()">📄 Exportar historial PDF</button>
+        <button onclick="reiniciar()">🔄 Volver a intentar</button>
+      </div>
+    </section>
+    </div>
 
   <section id="guia" class="guia-niveles oculto">
     <h2>📘 Guía: Niveles de redacción de prompts</h2>
-
     <div class="nivel">
       <h3>🔴 Bajo</h3>
       <p><strong>Descripción:</strong> Prompt muy general, sin contexto ni acción clara.</p>
       <p><strong>Ejemplo:</strong> “Ayudame con esto.”</p>
       <p><strong>Sugerencia:</strong> Agregá objetivo, destinatario y tipo de respuesta esperada.</p>
     </div>
-
     <div class="nivel">
       <h3>🟡 Medio</h3>
       <p><strong>Descripción:</strong> Prompt con intención clara pero faltan detalles.</p>
       <p><strong>Ejemplo:</strong> “Escribí un correo para cobrar una factura.”</p>
       <p><strong>Sugerencia:</strong> Indicá tono, plazo de vencimiento, número de factura y a quién va dirigido.</p>
     </div>
-
     <div class="nivel">
       <h3>🟢 Alto</h3>
       <p><strong>Descripción:</strong> Prompt específico, claro y orientado a resultados.</p>
@@ -101,24 +157,17 @@
       <p><strong>Sugerencia:</strong> ¡Excelente! Ya estás escribiendo como un experto en IA.</p>
     </div>
   </section>
-
-  <section id="pantallaFinal" class="oculto">
-    <div class="resultado-final">
-      <h2>🏁 ¡Resultado final!</h2>
-      <p id="insigniaFinal" class="insignia"></p>
-      <div id="estrellasFinal" class="estrellas"></div>
-      <button onclick="mostrarHistorial()">📜 Ver historial</button>
-      <button onclick="exportarHistorial()">📄 Exportar historial PDF</button>
-      <button onclick="reiniciar()">🔄 Volver a intentar</button>
-    </div>
-  </section>
-
+  
   <section id="historial" class="oculto">
     <h2>🗂️ Historial de prácticas</h2>
     <div id="historialTabla"></div>
-    <button onclick="ocultarHistorial()">⬅️ Ocultar historial</button>
-    <button class="borrar" onclick="borrarHistorial()">🗑️ Borrar historial</button>
-  </section>
+    <div style="text-align:center;">
+      <button onclick="ocultarHistorial()">⬅️ Ocultar historial</button>
+      <button class="borrar" onclick="borrarHistorial()">🗑️ Borrar historial</button>
+    </div>
+    </section>
+
+  
 
   <div id="modalConfirmacion" class="modal oculto">
     <div class="modal-contenido">
@@ -129,8 +178,13 @@
         <button class="confirmar" onclick="confirmarBorrado()">Sí, borrar todo</button>
       </div>
     </div>
-  </div>  
-  
+  </div>
+
+  <div id="avisoExportacion"
+    style="display:none; position:fixed; bottom:20px; right:20px; background:#c30000; color:#fff; padding:12px 20px; border-radius:12px; font-weight:bold; box-shadow: 0 4px 8px rgba(0,0,0,0.2); z-index:1000;">
+    ✅ PDF descargado. Ahora recordá adjuntarlo en el WhatsApp.
+  </div>
+
   <footer>
     <p>© 2023 Maxiseguridad. Todos los derechos reservados.</p>
     <p>Desarrollado por <a href="https://www.maxiseguridad.com" target="_blank">Maxiseguridad</a></p>
