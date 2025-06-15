@@ -28,7 +28,17 @@ Este simulador web interactivo está diseñado para que los equipos de distintas
 6. 📞 Atención al Cliente  
 7. 🔧 Técnica  
 8. 📄 Cotizaciones  
-9. 🏗️ Obras
+9. 🏗️ Obras  
+10. 🚚 Logística  
+11. 🛠️ Ingeniería  
+12. 📞 SDR / Prospección  
+13. 💻 Sistemas  
+14. 📣 Marketing  
+15. 🗣️ Comunicaciones Internas  
+16. 📊 Reportes e Informes  
+17. 📘 Comprensión Lectora  
+18. 🧯 IFCI / Mantenimiento / Coordinación de Equipos  
+
 
 ## 🛠️ Tecnologías utilizadas
 
