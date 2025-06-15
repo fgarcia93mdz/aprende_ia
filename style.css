@@ -82,40 +82,46 @@ textarea {
 }
 
 button {
+  background: linear-gradient(to bottom, #c30000, #a50000);
+  color: #fff;
+  border: 1px solid #800000;
+  border-radius: 10px;
+  padding: 12px 24px;
+  font-size: 1.05rem;
+  font-weight: 600;
   letter-spacing: 0.5px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
-
-button:focus {
-  outline: 2px solid #c30000;
-  outline-offset: 2px;
-}
-
-input:focus,
-textarea:focus,
-select:focus {
-  border-color: #c30000;
-  box-shadow: 0 0 0 2px rgba(195, 0, 0, 0.2);
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #a50000;
+  background: linear-gradient(to bottom, #a50000, #800000);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(195, 0, 0, 0.3);
 }
 
 button.gris {
-  background-color: #777;
+  background: linear-gradient(to bottom, #999, #666);
+  border: 1px solid #444;
 }
 
 button.gris:hover {
-  background-color: #444;
+  background: linear-gradient(to bottom, #777, #444);
 }
 
 button.borrar {
-  background-color: #555;
+  background: linear-gradient(to bottom, #666, #333);
+  border: 1px solid #111;
 }
 
 button.borrar:hover {
-  background-color: #000;
+  background: linear-gradient(to bottom, #444, #000);
 }
 
 .escenario,
@@ -514,25 +520,10 @@ footer a:hover {
   line-height: 1.5;
 }
 
-select,
-textarea,
-input,
-button {
-  transition: all 0.3s ease;
-}
-
 :root {
   --rojo-principal: #c30000;
   --gris-fondo: #f4f4f4;
   --gris-borde: #bbb;
-}
-
-button,
-input,
-select,
-textarea {
-  color: #222;
-  background-color: #fff;
 }
 
 label {
