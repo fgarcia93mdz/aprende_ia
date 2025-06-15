@@ -1049,7 +1049,6 @@ const escenarios = {
       respuestaIA: "Durante inspección del 12/6 se detectó corrosión interna avanzada en línea de cañería de red húmeda del sector C, con desprendimiento visible y pérdida de presión en prueba hidráulica. Se recomienda reemplazo completo del tramo afectado (~8 mts). Adjunto informe fotográfico y plano de intervención."
     }
   }
-  
 };
 
 function cambiarEscenario() {
