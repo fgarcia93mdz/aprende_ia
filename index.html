@@ -22,7 +22,7 @@
     <header>
       <img src="logo_maxiseguridad.jpeg" alt="Maxiseguridad Logo" class="logo">
       <h1>🧠 Simulador de IA aplicada al trabajo</h1>
-      <h2 class="subtitulo">Solo debes de aprender a preguntar</h2>
+      <p><strong>¡Todo empieza con un buen prompt!</strong></p>
     </header>
 
     <div id="bloqueFormulario">
@@ -35,7 +35,17 @@
 
       <div class="formulario-usuario" id="formUsuario">
         <h2>👤 Datos del usuario</h2>
-        <p>Por favor, completá tus datos para comenzar a practicar.</p>
+        <div class="aviso">
+          <p>⚠️ <strong>IMPORTANTE:</strong></p>
+          <p style="margin-left: 30px;">Este simulador no es un examen ni una evaluación. Es una herramienta para
+          mejorar tus habilidades de redacción.</p>
+          <p style="margin-left: 30px;">Podés practicar tantas veces como quieras y aprender a redactar mejores prompts.</p>
+          <div style="background-color: antiquewhite; padding: 1%; margin-top: 2%;">
+            <p style="text-align: center;">"Hazlo o no, pero no lo intentes."</p>
+            <p style="text-align: center;"><span style="color:#1976d2;"><strong>Yoda</strong></span>
+              </p>
+          </div>
+        </div>
         <div>
           <label for="nombre">👤 Nombre:</label>
           <input type="text" id="nombre" placeholder="Ej: Juan" required>
@@ -89,7 +99,6 @@
         </select>
 
         <div id="escenario" class="escenario oculto"></div>
-
         <label for="promptInput">✍️ Escribí tu prompt:</label>
         <textarea id="promptInput" rows="4"
           placeholder="Ej: Redactá un mail amable para reclamar una factura vencida..."></textarea>
@@ -109,40 +118,82 @@
 
     <section id="pantallaFinal" class="oculto">
       <div class="resultado-final">
-        <h2>🏁 ¡Resultado final!</h2>
+        <h2 id="banderaFinal">🏁 ¡Resultado final!</h2>
         <p id="insigniaFinal" class="insignia"></p>
         <div id="estrellasFinal" class="estrellas"></div>
         <div id="resumenPrompt" class="resumen-final"></div>
-        <button id="btnExportarPDF" onclick="exportarYEnviar()" class="gris">📄 Exportar PDF</button>
-        <button id="btnExportarHistorial" onclick="mostrarHistorial()">📜 Ver historial</button>
-        <button onclick="mostrarHistorial()">📜 Ver historial de prácticas</button>
-        <button onclick="reiniciar()">🔄 Nueva práctica</button>
+        <div class="botones-final">
+          <button id="btnExportarPDF" onclick="exportarYEnviar()" class="gris">📄 Exportar PDF</button>
+          <button onclick="mostrarHistorial()">📜 Ver historial de prácticas</button>
+          <button onclick="reiniciar()">🔄 Volver a intentar</button>
+        </div>
       </div>
     </section>
   </div>
 
   <section id="guia" class="guia-niveles oculto">
-    <h2>📘 Guía: Niveles de redacción de prompts</h2>
+    <button onclick="toggleGuia()" class="gris">❌ Cerrar Guía</button>
+    <h2>📘 Guía para redactar buenos prompts</h2>
+    <div class="intro-guia">
+      <p><b>¿Qué es un <span style="color:#1976d2;">prompt</span>?</b> Es lo que le escribís a la inteligencia artificial
+        para que te ayude. Cuanto mejor lo escribas, mejores serán las respuestas.</p>
+      <p>Hay <b>3 niveles de redacción</b>. Veamos cómo mejorar paso a paso:</p>
+      </div>
+  
     <div class="nivel">
-      <h3>🔴 Bajo</h3>
-      <p><strong>Descripción:</strong> Prompt muy general, sin contexto ni acción clara.</p>
+      <h3>Nivel Bajo</h3>
+      <p><strong>Descripción:</strong> El pedido es muy general. La IA no entiende bien qué querés.</p>
       <p><strong>Ejemplo:</strong> “Ayudame con esto.”</p>
-      <p><strong>Sugerencia:</strong> Agregá objetivo, destinatario y tipo de respuesta esperada.</p>
+      <p><strong>¿Por qué no funciona?</strong></p>
+      <ul>
+        <li>La IA no sabe a qué te referís.</li>
+        <li>No hay contexto, ni tema, ni objetivo.</li>
+      </ul>
+      <p><strong>¿Cómo mejorarlo?</strong></p>
+      <ul>
+        <li>Decí <em>qué necesitás</em> hacer (escribir, resumir, traducir...)</li>
+        <li>Indicá <em>para quién es</em> la respuesta (cliente, jefe, proveedor...)</li>
+        <li>Aclará <em>el objetivo</em> (informar, cobrar, pedir, explicar...)</li>
+      </ul>
     </div>
+  
     <div class="nivel">
-      <h3>🟡 Medio</h3>
-      <p><strong>Descripción:</strong> Prompt con intención clara pero faltan detalles.</p>
+      <h3>Nivel Medio</h3>
+      <p><strong>Descripción:</strong> El pedido es entendible, pero le faltan datos importantes.</p>
       <p><strong>Ejemplo:</strong> “Escribí un correo para cobrar una factura.”</p>
-      <p><strong>Sugerencia:</strong> Indicá tono, plazo de vencimiento, número de factura y a quién va dirigido.</p>
+      <p><strong>¿Qué le falta?</strong></p>
+      <ul>
+        <li>No decís a quién se le escribe.</li>
+        <li>No aclarás el número ni la fecha de la factura.</li>
+        <li>No decís qué tono querés usar.</li>
+      </ul>
+      <p><strong>¿Cómo mejorarlo?</strong></p>
+      <ul>
+        <li>Agregá <em>datos clave</em>: factura N°, monto, fecha de vencimiento.</li>
+        <li>Decí <em>quién recibe</em> el mensaje (nombre o rol).</li>
+        <li>Aclará el <em>tono</em> (cordial, formal, firme...).</li>
+      </ul>
     </div>
+  
     <div class="nivel">
-      <h3>🟢 Alto</h3>
-      <p><strong>Descripción:</strong> Prompt específico, claro y orientado a resultados.</p>
+      <h3>Nivel Alto</h3>
+      <p><strong>Descripción:</strong> El pedido es claro, específico y completo. ¡Ideal!</p>
       <p><strong>Ejemplo:</strong> “Redactá un mail cordial para el cliente Juan Pérez, recordando el pago de la factura
         N°243 vencida hace 10 días.”</p>
-      <p><strong>Sugerencia:</strong> ¡Excelente! Ya estás escribiendo como un experto en IA.</p>
+      <p><strong>¿Por qué es un buen prompt?</strong></p>
+      <ul>
+        <li>✅ Es claro: decís qué necesitás (un mail cordial).</li>
+        <li>✅ Das datos concretos (nombre, factura, fecha).</li>
+        <li>✅ Tenés un objetivo claro (recordar un pago).</li>
+      </ul>
+      <p><strong>¡Excelente!</strong> Seguí así y vas a obtener siempre las mejores respuestas de la IA.</p>
     </div>
+  
+    <hr>
+    <p><strong>Consejo final:</strong> Si la IA no te responde bien, no es que no sirve. Probá escribirle mejor. ¡Todo
+      empieza con un buen prompt! 💡</p>
   </section>
+  
 
   <section id="historial" class="oculto">
     <h2>🗂️ Historial de prácticas</h2>

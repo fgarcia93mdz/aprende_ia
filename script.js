@@ -900,22 +900,22 @@ const escenarios = {
     }
   },
   control_incendio: {
-  facil: {
-    texto: "🔥 Redactá un reporte breve sobre una inspección visual de hidrantes realizada hoy en el depósito A.",
-    objetivo: "Documentar una verificación básica de equipos contra incendio.",
-    criterios: [
-      "Incluye fecha y lugar de la inspección.",
-      "Indica cantidad o estado general de los hidrantes.",
-      "Menciona si hubo o no observaciones."
-    ],
-    tips: [
-      "Especificá el área recorrida (ej: depósito A).",
-      "Indicá cuántos hidrantes fueron inspeccionados.",
-      "Usá frases como: 'no se observaron anomalías' o 'se detectó tapa rota'."
-    ],
-    ejemploPrompt: "Redactá un reporte corto de inspección visual realizada hoy en depósito A.",
-    respuestaIA: "El día 14/6 se realizó inspección visual de 5 hidrantes en el depósito A. Todos se encuentran accesibles, sin obstrucciones ni daños visibles. Sin observaciones destacadas."
-  },
+    facil: {
+      texto: "🔥 Redactá un reporte breve sobre una inspección visual de hidrantes realizada hoy en el depósito A.",
+      objetivo: "Documentar una verificación básica de equipos contra incendio.",
+      criterios: [
+        "Incluye fecha y lugar de la inspección.",
+        "Indica cantidad o estado general de los hidrantes.",
+        "Menciona si hubo o no observaciones."
+      ],
+      tips: [
+        "Especificá el área recorrida (ej: depósito A).",
+        "Indicá cuántos hidrantes fueron inspeccionados.",
+        "Usá frases como: 'no se observaron anomalías' o 'se detectó tapa rota'."
+      ],
+      ejemploPrompt: "Redactá un reporte corto de inspección visual realizada hoy en depósito A.",
+      respuestaIA: "El día 14/6 se realizó inspección visual de 5 hidrantes en el depósito A. Todos se encuentran accesibles, sin obstrucciones ni daños visibles. Sin observaciones destacadas."
+    },
     intermedio: {
       texto: "🔥 Redactá un informe de prueba hidráulica realizada hoy en red de incendio del sector B.",
       objetivo: "Registrar los resultados técnicos de una prueba hidráulica con datos verificables.",
@@ -948,7 +948,7 @@ const escenarios = {
       ejemploPrompt: "Redactá un informe técnico solicitando reparación de una válvula defectuosa detectada en inspección.",
       respuestaIA: "Durante la inspección del 14/6 se detectó una válvula de retención con retorno parcial en el sector C. Esta falla compromete el correcto funcionamiento del sistema ante un evento. Recomendamos su reemplazo inmediato para garantizar la presurización completa. Se adjunta detalle fotográfico y plano de ubicación."
     }
-  },  
+  },
   coordinacion_obra: {
     facil: {
       texto: "📋 Redactá un mensaje para informar al equipo que mañana se trabajará en la instalación de cañerías en el sector 1.",
@@ -1071,7 +1071,14 @@ function cambiarEscenario() {
 
     let ejemploHtml = data.ejemploPrompt ? `<div style="margin-top:10px;"><b>Ejemplo de prompt:</b> <span style="color:#0c8b32;">${data.ejemploPrompt}</span></div>` : "";
 
-    escenario.innerHTML = `<div><b>Escenario:</b> ${data.texto}</div>${tipsHtml}${criteriosHtml}${ejemploHtml}`;
+    escenario.innerHTML = `
+      <div class="consigna-bloque">
+        <b>📝 Consigna:</b> ${data.texto}
+      </div>
+      ${tipsHtml}
+      ${criteriosHtml}
+      ${ejemploHtml}
+    `;
     escenario.classList.remove("oculto");
     escenario.classList.add("highlight");
     setTimeout(() => escenario.classList.remove("highlight"), 600);
@@ -1105,38 +1112,56 @@ function exportarPDF() {
     tempDiv.style.lineHeight = "1.6";
 
     tempDiv.innerHTML = `
-      <h2 style="color:#c30000; font-size:2em; margin-bottom:24px;">Resultado de tu práctica IA</h2>
-      <p><b>Nombre:</b> ${nombre} ${apellido}<br>
-      <b>Sector:</b> ${sector}</p>
-      <p><b>Prompt escrito:</b> <span style="color:#0c8b32;">${promptUsuario}</span></p>
-      <div style="
-        background:#fff;
-        color:#222;
-        border-left:5px solid #c30000;
-        border-radius:10px;
-        padding:18px 22px;
-        margin-top:32px;
-        margin-bottom:12px;
-        font-size:1.1em;
-        box-shadow:none;
-      ">
-        ${analisis.querySelector('.bloque-analisis') 
-          ? analisis.querySelector('.bloque-analisis').innerHTML
-          : analisis.innerHTML}
+      <div style="position:relative; z-index:1;">
+        <div style="text-align:center; margin-bottom:24px;">
+          <img src="logo_maxiseguridad.jpeg" alt="Maxiseguridad Logo" style="max-width:180px; margin-bottom:12px;">
+          <h2 style="color:#c30000; font-size:2em; margin:0;">Resultado de tu práctica IA</h2>
+        </div>
+        <p><b>Nombre:</b> ${nombre} ${apellido}<br>
+        <b>Sector:</b> ${sector}</p>
+        <p style="font-size:0.9em; color:#666;">
+          <strong>Fecha de generación:</strong> ${new Date().toLocaleDateString('es-AR', {
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    })} ${new Date().toLocaleTimeString('es-AR', { hour: '2-digit', minute: '2-digit' })}.
+        </p>
+        <p><b>Prompt escrito:</b> <span style="color:#0c8b32;">${promptUsuario}</span></p>
+        <div style="
+          color:#222;
+          border-left:5px solid #c30000;
+          border-radius:10px;
+          padding:18px 22px;
+          margin-top:32px;
+          margin-bottom:12px;
+          font-size:1.1em;
+          box-shadow:none;
+        ">
+          ${analisis.querySelector('.bloque-analisis')
+        ? analisis.querySelector('.bloque-analisis').innerHTML
+        : analisis.innerHTML}
+        </div>
+        <div style="
+          color:#222;          
+          border-left:5px solid #0c8b32;
+          border-radius:10px;
+          padding:18px 22px;
+          margin-bottom:12px;
+          font-size:1.1em;
+          box-shadow:none;
+        ">
+          <strong>🤖 Respuesta simulada de IA:</strong><br>
+          ${respuesta ? respuesta.textContent : ""}
+        </div>
+        <p style="margin-top:32px; font-size:0.9em; color:#666;">
+          Este PDF fue generado por el Simulador IA de <strong>Maxiseguridad Industrial</strong>.<br>
+          Para más información, visitá <a href="https://www.maxiseguridad.com" target="_blank">maxiseguridad.com</a>
+        </p>
+        <p style="font-size:0.9em; color:#666;">
+          <strong>Nota:</strong> Este documento es un ejemplo de práctica con IA y no tiene validez legal.
+        </p>
       </div>
-      <div style="
-        background:#f9f9f9;
-        color:#222;
-        border-left:5px solid #0c8b32;
-        border-radius:10px;
-        padding:18px 22px;
-        margin-bottom:12px;
-        font-size:1.1em;
-        box-shadow:none;
-      ">
-        <strong>🤖 Respuesta simulada de IA:</strong><br>
-        ${respuesta ? respuesta.textContent : ""}
-      </div>
+
     `;
 
     document.body.appendChild(tempDiv);
@@ -1147,19 +1172,38 @@ function exportarPDF() {
       image: { type: 'jpeg', quality: 1 },
       html2canvas: { scale: 4, useCORS: true, scrollY: 0, backgroundColor: "#fff" },
       jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    }).save().then(() => {
-      document.body.removeChild(tempDiv);
-      const aviso = document.getElementById("avisoExportacion");
-      if (aviso) {
-        aviso.style.display = "block";
-        setTimeout(() => aviso.style.display = "none", 3000);
-      }
-      resolve();
-    }).catch(err => {
-      document.body.removeChild(tempDiv);
-      console.error("Error al generar PDF:", err);
-      reject(err);
-    });
+    })
+      .toPdf()
+      .get('pdf')
+      .then(function (pdf) {
+        const totalPages = pdf.internal.getNumberOfPages();
+        for (let i = 1; i <= totalPages; i++) {
+          pdf.setPage(i);
+          pdf.setDrawColor(195, 0, 0);
+          pdf.setLineWidth(0.5);
+          pdf.line(10, 278, 200, 278); 
+          pdf.setFontSize(11);
+          pdf.setTextColor(195, 0, 0);
+          const footerText = 'Uso interno - Maxiseguridad Industrial';
+          const pageWidth = pdf.internal.pageSize.getWidth();
+          const textWidth = pdf.getTextWidth(footerText);
+          pdf.text(footerText, (pageWidth - textWidth) / 2, 285);
+        }
+      })
+      .save()
+      .then(() => {
+        document.body.removeChild(tempDiv);
+        const aviso = document.getElementById("avisoExportacion");
+        if (aviso) {
+          aviso.style.display = "block";
+          setTimeout(() => aviso.style.display = "none", 3000);
+        }
+        resolve();
+      }).catch(err => {
+        document.body.removeChild(tempDiv);
+        console.error("Error al generar PDF:", err);
+        reject(err);
+      });
   });
 }
 
@@ -1221,6 +1265,67 @@ function continuarUsuario() {
   document.getElementById('formPrompt').classList.remove('oculto');
   document.querySelector('.bienvenida').classList.add('oculto');
   document.querySelector('.instrucciones').classList.add('oculto');
+}
+
+function formatearSugerencia(sugerencia, claseNivel) {
+  if (claseNivel === "nivel-bajo") {
+    return `
+      <ul style="margin:8px 0 8px 24px;">
+        <li>Incluí una <b>acción clara</b> (ej: redactar, preparar, informar)</li>
+        <li>Agregá <b>contexto o situación</b></li>
+        <li>Indicá <b>a quién va dirigido</b></li>
+        <li>Explicá <b>qué esperás lograr</b></li>
+        <li>Definí el <b>tono</b> (cordial, formal, urgente...)</li>
+        <li>Especificá el <b>formato</b> (mail, mensaje, nota, etc.)</li>
+      </ul>
+      <p>Cuanto más completo, mejores resultados.</p>
+    `;
+  } else if (claseNivel === "nivel-medio") {
+    return `
+      <ul style="margin:8px 0 8px 24px;">
+        <li>Incluí el <b>destinatario</b> (¿a quién va dirigido?)</li>
+        <li>Agregá un <b>objetivo claro</b> (¿qué querés lograr?)</li>
+        <li>Definí el <b>tono</b> (¿cómo querés sonar?)</li>
+        <li>Indicá el <b>formato</b> (¿en qué tipo de respuesta?)</li>
+      </ul>
+      <p>Esto ayuda a que la IA entienda y responda con mayor precisión.</p>
+    `;
+  } else {
+    return sugerencia;
+  }
+}
+
+function formatearExplicacion(explicacion, claseNivel) {
+  if (claseNivel === "nivel-bajo") {
+    return `
+      <ul style="margin:8px 0 8px 24px;">
+        <li>El prompt es <b>muy corto o poco claro</b>.</li>
+        <li>No se entiende bien <b>qué debe hacer la IA</b>.</li>
+        <li>Faltan detalles como <b>contexto, destinatario, objetivo y tipo de respuesta</b>.</li>
+      </ul>
+      <p>Agregá más información para que la IA pueda ayudarte mejor.</p>
+    `;
+  } else if (claseNivel === "nivel-medio") {
+    return `
+      <ul style="margin:8px 0 8px 24px;">
+        <li>El prompt tiene <b>intención general y algo de contexto</b>.</li>
+        <li>Faltan elementos clave como <b>destinatario, objetivo, tono o formato</b>.</li>
+        <li>La respuesta de la IA puede ser menos precisa.</li>
+      </ul>
+      <p>Completá los elementos faltantes para mejorar la calidad de la respuesta.</p>
+    `;
+  } else if (claseNivel === "nivel-alto") {
+    return `
+      <ul style="margin:8px 0 8px 24px;">
+        <li>El prompt está <b>bien estructurado</b> y es <b>claro</b>.</li>
+        <li>Incluye <b>acción, contexto, objetivo, destinatario, tono y formato</b>.</li>
+        <li>La IA podrá responder de forma precisa y útil.</li>
+      </ul>
+      <p>¡Excelente trabajo! Seguí así para obtener los mejores resultados.</p>
+    `;
+  } else {
+    return explicacion;
+  }
 }
 
 function procesarPrompt() {
@@ -1288,12 +1393,13 @@ function procesarPrompt() {
     </ul>
   `;
 
-   analisis.innerHTML = `
+  analisis.innerHTML = `
     <div class="bloque-analisis">
       <strong>📊 Análisis del prompt:</strong><br>
       <b class="${claseNivel}">Nivel: ${nivelTexto}</b><br>
-      <b>Explicación:</b> ${explicacion}<br>
-      <b>Sugerencia:</b> ${sugerencia}<br>
+      <b>Explicación:</b> ${formatearExplicacion(explicacion, claseNivel)}<br>
+      <b>Sugerencia:</b> ${formatearSugerencia(sugerencia, claseNivel)}<br>
+      <b>Checklist de evaluación:</b>
       ${checklist}
     </div>
   `;
@@ -1310,13 +1416,13 @@ function procesarPrompt() {
 
   setTimeout(() => respuesta.classList.remove("highlight"), 600);
 
-  guardarEnHistorial(area, nivel, prompt, claseNivel);
-  mostrarPantallaFinal(claseNivel, explicacion, sugerencia, area, nivel, nivelTexto);
+  guardarEnHistorial(area, nivel, prompt, claseNivel, nivelTexto, explicacion, sugerencia, checklist);
+  mostrarPantallaFinal(claseNivel, explicacion, sugerencia, area, nivel, nivelTexto, checklist);
 
   document.getElementById("accionesIniciales").classList.add("oculto");
 }
 
-function mostrarPantallaFinal(nivelDetectado, explicacion, sugerencia, area, nivel, textoNivel) {
+function mostrarPantallaFinal(nivelDetectado, explicacion, sugerencia, area, nivel, textoNivel, checklist) {
   const pantalla = document.getElementById("pantallaFinal");
   const insignia = document.getElementById("insigniaFinal");
   const estrellas = document.getElementById("estrellasFinal");
@@ -1341,16 +1447,32 @@ function mostrarPantallaFinal(nivelDetectado, explicacion, sugerencia, area, niv
   estrellas.innerText = estrellasHTML;
 
   resumen.innerHTML = `
-    <div class="bloque-analisis">
-      <h3>📊 Análisis del prompt</h3>
-      <p><b>Nivel detectado:</b> ${textoNivel}</p>
-      <p><b>Explicación:</b> ${explicacion}</p>
-      <p><b>Sugerencia:</b> ${sugerencia}</p>
-    </div>
-    <div class="bloque-respuesta">
+  <div style="
+     background: #fff6f0;
+     border: 1.5px solid #c30000;
+     border-radius: 12px;
+     padding: 18px 22px;
+     margin: 18px 0 18px 0;
+     box-shadow: 0 2px 8px #c3000022;
+    ">
+     <h3 style="color:#c30000; margin-top:0;">📊 Análisis del prompt</h3>
+     <p><b>Nivel detectado:</b> ${textoNivel}</p>
+     <p><b>Explicación:</b> ${formatearExplicacion(explicacion, nivelDetectado)}</p>
+     <p><b>Sugerencia:</b> ${formatearSugerencia(sugerencia, nivelDetectado)}<br></p>
+     <p><b>Checklist de evaluación:</b></p>
+      ${checklist}
+  </div>
+  <div style="
+     background: #fff6f0;
+     border: 1.5px solidrgb(101, 195, 0);
+     border-radius: 12px;
+     padding: 18px 22px;
+     margin: 18px 0 18px 0;
+     box-shadow: 0 2px 8px #c3000022;
+    ">
       <h3>🤖 Respuesta simulada de IA</h3>
       <p>${(escenarios[area] && escenarios[area][nivel]) ? escenarios[area][nivel].respuestaIA : 'No disponible.'}</p>
-    </div>
+  </div>
   `;
 
   if (bloqueFormulario) bloqueFormulario.classList.add("oculto");
@@ -1370,7 +1492,7 @@ function reiniciar() {
   document.querySelector('.instrucciones').classList.remove('oculto');
 }
 
-function guardarEnHistorial(area, nivel, prompt, nivelDetectado) {
+function guardarEnHistorial(area, nivel, prompt, nivelDetectado, nivelTexto, explicacion, sugerencia, checklist) {
   const historial = JSON.parse(localStorage.getItem("historialIA")) || [];
 
   const nombre = document.getElementById("nombre").value.trim();
@@ -1386,6 +1508,10 @@ function guardarEnHistorial(area, nivel, prompt, nivelDetectado) {
     nivel,
     prompt,
     evaluacion: nivelDetectado,
+    nivelTexto,
+    explicacion,
+    sugerencia,
+    checklist,
     respuesta: escenarios[area][nivel].respuestaIA
   });
 
@@ -1444,7 +1570,22 @@ function exportarHistorial() {
            <strong>Sector:</strong> ${sector}</p>`;
 
   html += `<table border="1" style="border-collapse: collapse; width: 100%; font-size: 12px;">
-    <thead><tr><th>Fecha</th><th>Área</th><th>Nivel</th><th>Prompt</th><th>Evaluación</th></tr></thead><tbody>`;
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Área</th>
+        <th>Nivel</th>
+        <th>Prompt</th>
+        <th>Evaluación</th>
+        <th>Nivel textual</th>
+        <th>Explicación</th>
+        <th>Sugerencia</th>
+        <th>Checklist</th>
+        <th>Respuesta IA</th>
+      </tr>
+    </thead>
+    <tbody>`;
+
   historial.forEach(item => {
     html += `<tr>
       <td>${item.fecha}</td>
@@ -1452,8 +1593,14 @@ function exportarHistorial() {
       <td>${item.nivel}</td>
       <td>${item.prompt}</td>
       <td>${item.evaluacion.replace("nivel-", "").toUpperCase()}</td>
+      <td>${item.nivelTexto || ""}</td>
+      <td>${item.explicacion || ""}</td>
+      <td>${item.sugerencia || ""}</td>
+      <td>${item.checklist || ""}</td>
+      <td>${item.respuesta || ""}</td>
     </tr>`;
   });
+
   html += "</tbody></table>";
 
   const element = document.createElement("div");

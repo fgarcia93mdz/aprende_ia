@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  max-width: 960px;
+  max-width: 1260px;
   margin: 30px auto;
   background: #ffffff;
   padding: 30px;
@@ -85,7 +85,7 @@ textarea {
 button {
   background: linear-gradient(to bottom, #c30000, #a50000);
   color: #fff;
-  border: 1px solid #800000;
+  border: 1px solid #d52c2c;
   border-radius: 10px;
   padding: 12px 24px;
   font-size: 1.05rem;
@@ -94,6 +94,7 @@ button {
   cursor: pointer;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
+  margin: 1%;
 }
 
 button:hover {
@@ -109,7 +110,7 @@ button:focus {
 
 button.gris {
   background-color: #ccc;
-  color: #333;
+  color: #d3d3d3;
 }
 
 button.gris:hover {
@@ -123,6 +124,21 @@ button.borrar {
 
 button.borrar:hover {
   background: linear-gradient(to bottom, #444, #000);
+}
+
+.botones-final {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 12px;
+  width: 100%;
+}
+
+.botones-final button {
+  width: auto;
+  min-width: 120px;
+  padding: 10px 16px;
+  font-size: 0.8em;
 }
 
 .escenario,
@@ -189,52 +205,105 @@ button.borrar:hover {
 
 .guia-niveles {
   margin-top: 40px;
-  padding: 25px;
-  background: #fff5f5;
-  border: 2px solid #c30000;
-  border-radius: 14px;
+  padding: 32px 20px 24px 20px;
+  background: #fff8f5;
+  border: 2.5px solid #c30000;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #c3000012;
   animation: fadeIn 0.6s ease-in-out;
+  max-width: 970px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .guia-niveles h2 {
   color: #c30000;
-  margin-bottom: 20px;
-  font-size: 1.5em;
+  margin-bottom: 28px;
+  font-size: 1.7em;
   text-align: center;
+  letter-spacing: 1px;
 }
 
 .nivel {
-  background: #ffffff;
-  padding: 15px;
-  margin-bottom: 15px;
-  border-left: 5px solid #ccc;
-  border-radius: 6px;
+  background: #fff;
+  padding: 22px 18px 16px 18px;
+  margin-bottom: 22px;
+  border-left: 7px solid #ccc;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #c3000012;
+  position: relative;
+  transition: box-shadow 0.2s;
 }
 
 .nivel h3 {
   margin-top: 0;
+  font-size: 1.3em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.nivel:nth-child(2) {
-  border-left-color: #e74c3c;
+.nivel:nth-of-type(1) { border-left-color: #e74c3c; }
+.nivel:nth-of-type(2) { border-left-color: #f1c40f; }
+.nivel:nth-of-type(3) { border-left-color: #2ecc71; }
+
+.nivel h3::before {
+  font-size: 1.6em;
+  display: inline-block;
 }
 
-.nivel:nth-child(3) {
-  border-left-color: #f1c40f;
+.nivel:nth-of-type(1) h3::before { content: "🔴"; }
+.nivel:nth-of-type(2) h3::before { content: "🟡"; }
+.nivel:nth-of-type(3) h3::before { content: "🟢"; }
+
+.nivel p {
+  margin: 8px 0 0 0;
+  font-size: 1.05em;
 }
 
-.nivel:nth-child(4) {
-  border-left-color: #2ecc71;
+.nivel p strong {
+  color: #c30000;
+}
+
+.guia-niveles button.gris {
+  float: right;
+  margin-bottom: 10px;
+  background: #888;
+  color: #fff;
+  border-radius: 8px;
+  border: none;
+  padding: 7px 18px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.guia-niveles button.gris:hover {
+  background: #666;
 }
 
 .resultado-final {
   max-width: 800px;
   width: 100%;
-  box-sizing: border-box;
-  background: #fff;
-  padding: 24px;
-  color: #222;
-  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: #fff8f0;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(195, 0, 0, 0.08);
+  padding: 36px 24px 32px 24px;
+  margin: 32px auto;
+}
+
+#banderaFinal {
+  font-size: 2.2em;
+  color: #c30000;
+  margin-bottom: 12px;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: bold;
+  text-shadow: 0 2px 8px #fff3;
 }
 
 .resultado-final:hover {
@@ -296,6 +365,10 @@ button.borrar:hover {
   padding: 20px;
   border: 1px solid #c30000;
   border-radius: 10px;
+  transition: max-height 0.5s cubic-bezier(.4, 0, .2, 1), opacity 0.5s;
+  overflow: hidden;
+  max-height: 730px;
+  opacity: 1;
 }
 
 .formulario-usuario label {
@@ -312,6 +385,36 @@ button.borrar:hover {
   font-size: 1rem;
   margin-top: 5px;
   box-sizing: border-box;
+}
+
+.formulario-usuario h2 {
+  color: #c30000;
+  font-size: 1.4em;
+  margin-bottom: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(195, 0, 0, 0.2);
+}
+
+.aviso {
+  background: #fffbe6;
+  border-left: 5px solid #f7b500;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px #f7b50022;
+  font-size: 1.08em;
+}
+
+.aviso strong {
+  color: #c30000;
+}
+
+.aviso p {
+  margin: 10px 0 0 0;
 }
 
 footer {
@@ -456,13 +559,6 @@ footer a:hover {
   color: #0c8b32;
 }
 
-.formulario-usuario {
-  transition: max-height 0.5s cubic-bezier(.4, 0, .2, 1), opacity 0.5s;
-  overflow: hidden;
-  max-height: 500px;
-  opacity: 1;
-}
-
 .formulario-usuario.oculto {
   max-height: 0;
   opacity: 0;
@@ -584,6 +680,10 @@ label {
     font-size: 0.75em;
     padding: 15px 10px;
   }
+
+  .formulario-usuario {
+    max-height: 800px;
+  }
 }
 
 .evaluacion,
@@ -595,18 +695,28 @@ label {
   border-radius: 8px;
   padding: 16px 20px;
   margin-bottom: 16px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
   font-size: 16px;
   font-family: Arial, sans-serif;
   line-height: 1.5;
 }
+
 .evaluacion strong,
 .respuesta strong {
   color: #c30000 !important;
 }
-.nivel-bajo { color: #c30000 !important; }
-.nivel-medio { color: #e6a700 !important; }
-.nivel-alto { color: #0c8b32 !important; }
+
+.nivel-bajo {
+  color: #c30000 !important;
+}
+
+.nivel-medio {
+  color: #e6a700 !important;
+}
+
+.nivel-alto {
+  color: #0c8b32 !important;
+}
 
 @media print {
 
@@ -619,4 +729,41 @@ label {
     box-shadow: none !important;
     border-left: 5px solid #c30000 !important;
   }
+}
+
+.checklist {
+  color: #222 !important;
+  margin: 10px 0 0 20px;
+  font-size: 1em;
+}
+
+.consigna-bloque {
+  background: #f0f6ff;
+  border-left: 4px solid #1976d2;
+  border-radius: 8px;
+  padding: 12px 18px;
+  margin-bottom: 14px;
+  font-size: 1.1em;
+}
+
+.consigna-bloque b {
+  color: #1976d2;
+}
+
+.intro-guia {
+  background: #f8faff;
+  border-left: 5px solid #1976d2;
+  border-radius: 10px;
+  padding: 18px 22px;
+  margin-bottom: 28px;
+  box-shadow: 0 2px 8px #1976d211;
+  font-size: 1.08em;
+}
+
+.intro-guia b {
+  color: #1976d2;
+}
+
+.intro-guia p {
+  margin: 10px 0 0 0;
 }
