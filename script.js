@@ -1214,7 +1214,7 @@ function exportarYEnviar() {
     const sector = document.getElementById("sector").value || "";
 
     const mensaje = `Hola, soy ${nombre} ${apellido} del sector ${sector}. Acabo de generar y descargar el PDF de mi resultado del Simulador IA. Lo tengo listo para enviar.`;
-    const numero = "5492615995585";
+    const numero = "5491137733648";
     const url = `https://api.whatsapp.com/send?phone=${numero}&text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, "_blank");
